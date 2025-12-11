@@ -24,19 +24,21 @@ interface ScreenLayoutProps {
 const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   children,
   style,
-  backgroundColor = theme.colors.white,
+  backgroundColor = theme.colors.background
 }) => {
 
   const insets = useSafeAreaInsets();
 
   return (
     <>
-     
-      <SafeAreaView style={[styles.background, { backgroundColor,
-          paddingTop: sizeHelper.calHp(15),
+      <StatusBar backgroundColor="#F1F0F2" barStyle="dark-content" />
+
+      <SafeAreaView style={[styles.background, {
+        backgroundColor,
+        paddingTop: sizeHelper.calHp(30),
 
 
-       }]}>
+      }]}>
         <View style={[styles.container, style]}>{children}</View>
       </SafeAreaView>
     </>
@@ -44,16 +46,16 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
 };
 
 const styles = StyleSheet.create({
-background: {
+  background: {
     flex: 1,
     width: "100%",
     height: "100%",
-    // backgroundColor:'#F1F0F2'
-    
+    backgroundColor: theme.colors.background
+
   },
   container: {
     flex: 1,
-    backgroundColor:"#F1F0F2",
+    backgroundColor: "#F1F0F2",
     gap: sizeHelper.calHp(30),
     paddingHorizontal: sizeHelper.calWp(30),
 

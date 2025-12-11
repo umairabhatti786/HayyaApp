@@ -4,7 +4,6 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
-    Platform,
     Pressable,
     Keyboard,
 } from "react-native";
@@ -17,28 +16,30 @@ import { appStyles } from "../../../utils/GlobalStyles";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { images } from "../../../assets/images";
+import { icons } from "../../../assets/icons";
 const LoginScreen = ({ navigation }: any) => {
     const [showPassowrd, setShowPassowrd] = useState(false);
 
     return (
         <>
             <ScreenLayout
-                backgroundColor="#F1F0F2"
             >
                 <Pressable
                     onPress={() => Keyboard.dismiss()}
                     style={{
                         flex: 1,
                         gap: sizeHelper.calHp(50),
-                        backgroundColor: "#F1F0F2"
+                        backgroundColor: theme.colors.background
                     }}
 
                 >
                     <TouchableOpacity
-                        style={{ height: sizeHelper.calWp(40), width: sizeHelper.calWp(40) }}
+                        onPress={() => navigation.goBack()}
+
+                        style={styles.back_container}
                     >
-                        <Image style={{ height: sizeHelper.calWp(25), width: sizeHelper.calWp(25) }}
-                            source={images.back_arrow}
+                        <Image style={styles.back_icon}
+                            source={icons.back_arrow}
                             resizeMode="contain" />
 
 
@@ -49,7 +50,7 @@ const LoginScreen = ({ navigation }: any) => {
                             text={`Welcome Back!`}
                             size={47}
                             fontFam={fonts.InterTight_Bold}
-                            color="#010101"
+                            color={theme.colors.secondry}
 
                             fontWeight={"700"}
                         />
@@ -57,9 +58,9 @@ const LoginScreen = ({ navigation }: any) => {
 
                         <CustomText
                             text={`Login to your Account.`}
-                            size={30}
+                            size={28}
                             fontFam={fonts.InterTight_Regular}
-                            color="#010101"
+                            color={theme.colors.secondry}
 
                             fontWeight={"400"}
                         />
@@ -68,8 +69,6 @@ const LoginScreen = ({ navigation }: any) => {
 
 
                     </View>
-
-
                     <View
                         style={{
                             gap: sizeHelper.calHp(32),
@@ -90,7 +89,7 @@ const LoginScreen = ({ navigation }: any) => {
                                 borderRadius={999}
                                 secureTextEntry={showPassowrd}
                                 onRightSource={() => setShowPassowrd(!showPassowrd)}
-                                rightSource={!showPassowrd ? images.eye : images.eye_off}
+                                rightSource={!showPassowrd ? icons.eye : icons.eye_off}
                                 placeholder="Password"
                             />
 
@@ -101,7 +100,7 @@ const LoginScreen = ({ navigation }: any) => {
                                 <CustomText
                                     text={"Forgot Password?"}
                                     fontWeight="600"
-                                    color="#6348EC"
+                                    color={theme.colors.primary}
                                     size={20}
                                     fontFam={fonts.InterTight_Medium}
                                 />
@@ -114,7 +113,6 @@ const LoginScreen = ({ navigation }: any) => {
 
                         <CustomButtom
                             textColor={theme.colors.white}
-                            bgColor={"#6348EC"}
 
                             text="Login"
                             borderRadius={999}
@@ -123,7 +121,7 @@ const LoginScreen = ({ navigation }: any) => {
                         />
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("HayyaRegister")}
+                            onPress={() => navigation.navigate("RegisterScreen")}
                             style={{
                                 alignItems: "center",
                                 gap: sizeHelper.calWp(5),
@@ -134,7 +132,7 @@ const LoginScreen = ({ navigation }: any) => {
                             <CustomText
 
                                 text={"Don’t have an account?"}
-                                color={"#010101"}
+                                color={theme.colors.secondry}
                                 fontWeight="400"
                                 size={23}
                                 fontFam={fonts.InterTight_Regular}
@@ -143,7 +141,7 @@ const LoginScreen = ({ navigation }: any) => {
                             <CustomText
 
                                 text={"Signup"}
-                                color={"#6348EC"}
+                                color={theme.colors.primary}
                                 fontWeight="600"
                                 size={25}
                                 fontFam={fonts.InterTight_SemiBold}
@@ -156,7 +154,7 @@ const LoginScreen = ({ navigation }: any) => {
                                 <CustomText
                                     text={"or"}
                                     fontWeight="400"
-                                    color="#010101"
+                                    color={theme.colors.secondry}
                                     size={27}
                                     fontFam={fonts.InterTight_Regular}
                                 />
@@ -181,7 +179,7 @@ const LoginScreen = ({ navigation }: any) => {
                                     <CustomText
                                         text={"Login with Google"}
                                         fontWeight="500"
-                                        color="#010101"
+                                        color={theme.colors.secondry}
                                         size={20}
                                         fontFam={fonts.InterTight_Regular}
                                     />
@@ -206,7 +204,7 @@ const LoginScreen = ({ navigation }: any) => {
                                     <CustomText
                                         text={"Login with Apple"}
                                         fontWeight="500"
-                                        color="#010101"
+                                        color={theme.colors.secondry}
                                         size={20}
                                         fontFam={fonts.InterTight_Regular}
                                     />
@@ -241,15 +239,7 @@ const LoginScreen = ({ navigation }: any) => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-    logo_img: {
-        width: sizeHelper.calWp(120),
-        height: sizeHelper.calWp(120),
-        alignSelf: "center",
-    },
-    line: {
-        flex: 1,
-        height: sizeHelper.calHp(2),
-    },
+
     authButton: {
         flex: 1,
         height: sizeHelper.calHp(73),
@@ -260,5 +250,11 @@ const styles = StyleSheet.create({
         borderRadius: 999,
         backgroundColor: theme.colors.white
 
+    },
+    back_container: {
+        height: sizeHelper.calWp(40), width: sizeHelper.calWp(40)
+    },
+    back_icon: {
+        height: sizeHelper.calWp(25), width: sizeHelper.calWp(25)
     }
 });

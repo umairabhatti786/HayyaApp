@@ -4,8 +4,9 @@ export const theme = {
     secondry:"#010101",
     black: "#000000",
     white: "#FFFFFF",
-    background:"#F1F0F2"
-   
+    background:"#F1F0F2",
+    red:"#FF0000",
+
    
    
   },
