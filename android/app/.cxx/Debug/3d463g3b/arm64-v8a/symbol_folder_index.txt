@@ -1,0 +1,1 @@
+/Users/mac/Documents/Hayya/android/app/build/intermediates/cxx/Debug/3d463g3b/obj/arm64-v8a

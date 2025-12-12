@@ -4,23 +4,6 @@
 
 # Xcode
 #
-android/app/.cxx/
-
-*.cxx/
-.cxx/
-*.json
-/build/
-/app/build/
-android/app/.cxx/Debug/
-android/app/.cxx/
-android/app/.cxx/**/.cmake/
-android/app/.cxx/**/reply/*.json
-android/app/.cxx/Debug/5s2z493p/arm64-v8a/
-android/app/build/intermediates/
-android/app/.cxx/Debug/5s2z493p/x86/.ninja_deps
-android/app/.cxx/Debug/5s2z493p/armeabi-v7a/.ninja_deps
-android/app/.cxx/RelWithDebInfo/3c52k312/arm64-v8a/.ninja_log
-
 build/
 Pods/
 ios/Pods
@@ -40,6 +23,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+.kotlin/
 
 # Android/IntelliJ
 #
