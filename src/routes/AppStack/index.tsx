@@ -8,6 +8,9 @@ import ForgotPasswordScreen from "../../screens/Auth/ForgotPassword";
 import SetNewPasswordScreen from "../../screens/Auth/SetNewPassword";
 import CongratulationsScreen from "../../screens/Main/Congratulations";
 import OnbordingScreen from "../../screens/Auth/Onbording"
+import SplashScreen from "../../screens/Auth/Splash";
+import { CommonActions } from "@react-navigation/native";
+
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
   return (
@@ -15,6 +18,7 @@ const AppStack = () => {
                  <StatusBar translucent backgroundColor="#F1F0F2" barStyle="dark-content" />
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
 
       <Stack.Screen name="OnbordingScreen" component={OnbordingScreen} />
 

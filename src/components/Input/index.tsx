@@ -57,10 +57,10 @@ const CustomInput = ({
         >
           <CustomText
             text={label}
-            fontWeight="600"
+            fontWeight="500"
             size={21}
             color={theme.colors.secondry}
-            fontFam={fonts.InterTight_Medium}
+            fontFam={fonts.InterTight_Regular}
           />
         </View>
       )}
