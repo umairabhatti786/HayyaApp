@@ -10,6 +10,8 @@ export const images = {
     logo:require("../images/logo.png"),
     splash:require("../images/splash.png"),
         user:require("../images/user.png"),
-
+        plus:require("../images/plus.png"),
+Group8:require("../images/Group8.png"),
+avatar:require("../images/avatar.png")
 
 }

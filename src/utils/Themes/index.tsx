@@ -6,8 +6,8 @@ export const theme = {
     white: "#FFFFFF",
     background:"#F1F0F2",
     red:"#FF0000",
-
-   
+    BluePurple:"#755FE21F",
+    LightBlue:"#95EAFF"
    
   },
 };
