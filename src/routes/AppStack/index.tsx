@@ -10,6 +10,7 @@ import CongratulationsScreen from "../../screens/Main/Congratulations";
 import OnbordingScreen from "../../screens/Auth/Onbording"
 import SplashScreen from "../../screens/Auth/Splash";
 import { CommonActions } from "@react-navigation/native";
+import BottomTab from "../BottomTab";
 
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
@@ -23,7 +24,8 @@ const AppStack = () => {
       <Stack.Screen name="OnbordingScreen" component={OnbordingScreen} />
 
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      
+              <Stack.Screen name="BottomTab" component={BottomTab} />
+
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
 
         <Stack.Screen name="VerificationScreen" component={VerificationScreen} />

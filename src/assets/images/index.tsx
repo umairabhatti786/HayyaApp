@@ -9,5 +9,7 @@ export const images = {
     intro3:require("../images/intro3.png"),
     logo:require("../images/logo.png"),
     splash:require("../images/splash.png"),
+        user:require("../images/user.png"),
+
 
 }

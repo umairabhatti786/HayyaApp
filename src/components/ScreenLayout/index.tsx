@@ -19,12 +19,14 @@ interface ScreenLayoutProps {
   backgroundColor?: string;
   barStyle?: StatusBarStyle; // "light-content" | "dark-content" | "default"
   translucent?: boolean;
+  paddingTop?:any
 }
 
 const ScreenLayout: React.FC<ScreenLayoutProps> = ({
   children,
   style,
-  backgroundColor = theme.colors.background
+  backgroundColor = theme.colors.background,
+  paddingTop
 }) => {
 
   const insets = useSafeAreaInsets();
@@ -35,7 +37,7 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
 
       <SafeAreaView style={[styles.background, {
         backgroundColor,
-        paddingTop: sizeHelper.calHp(30),
+        paddingTop: sizeHelper.calHp( paddingTop ||30),
 
 
       }]}>
