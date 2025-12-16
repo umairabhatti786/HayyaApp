@@ -11,6 +11,9 @@ import OnbordingScreen from "../../screens/Auth/Onbording"
 import SplashScreen from "../../screens/Auth/Splash";
 import { CommonActions } from "@react-navigation/native";
 import BottomTab from "../BottomTab";
+import CreateRoomCreditScreen from "../../screens/Main/CreateRoom/CreateRoomCredit";
+import CreateRoomCreditPlanningScreen from "../../screens/Main/CreateRoom/CreateRoomCreditPlanning";
+import CreateRoomLaunchScreen from "../../screens/Main/CreateRoom/CreateRoomLaunch";
 
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
@@ -33,6 +36,11 @@ const AppStack = () => {
         <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
         <Stack.Screen name="SetNewPasswordScreen" component={SetNewPasswordScreen} />
         <Stack.Screen name="CongratulationsScreen" component={CongratulationsScreen} />
+        <Stack.Screen name="CreateRoomCreditScreen" component={CreateRoomCreditScreen} />
+                <Stack.Screen name="CreateRoomCreditPlanningScreen" component={CreateRoomCreditPlanningScreen} />
+                                <Stack.Screen name="CreateRoomLaunchScreen" component={CreateRoomLaunchScreen} />
+
+
 
         
       </Stack.Navigator>

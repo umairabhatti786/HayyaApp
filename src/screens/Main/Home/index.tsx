@@ -8,8 +8,10 @@ import CustomText from "../../../components/Text";
 import { fonts } from "../../../utils/Themes/fonts";
 import { theme } from "../../../utils/Themes";
 import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
-import PlusIcon from "../../../assets/svgs/plus.svg";
 import { images } from "../../../assets/images";
+import CustomButtom from "../../../components/Button";
+import PlusIcon from "../../../assets/svgs/plus.svg";
+import FastfoodImage from "../../../assets/svgs/fastfood.svg";
 
 const HomeScreen = ({ navigation, route }: any) => {
   const HomeHeader = () => {
@@ -25,7 +27,7 @@ const HomeScreen = ({ navigation, route }: any) => {
               ...appStyles.row,
               paddingRight: sizeHelper.calWp(5),
               backgroundColor: "#755FE21F",
-              paddingLeft:sizeHelper.calWp(15),
+              paddingLeft: sizeHelper.calWp(15),
               borderRadius: 999,
             }}
           >
@@ -36,9 +38,9 @@ const HomeScreen = ({ navigation, route }: any) => {
             <CustomText
               text={`15`}
               size={28}
-            //   fontFam={fonts.InterTight_Medium}
+              //   fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-            //   fontWeight={"600"}
+              //   fontWeight={"600"}
             />
             <TouchableOpacity
               style={{
@@ -47,28 +49,27 @@ const HomeScreen = ({ navigation, route }: any) => {
                 padding: sizeHelper.calWp(25),
                 borderRadius: 999,
                 backgroundColor: theme.colors.secondry,
-                marginLeft:sizeHelper.calWp(20)
+                marginLeft: sizeHelper.calWp(20),
               }}
             >
-
-                 <PlusIcon
-              width={sizeHelper.calWp(25)}
-              height={sizeHelper.calWp(25)}
-               color={
-                   theme.colors.white
-                  }
-            />
-
+              <PlusIcon
+                width={sizeHelper.calWp(25)}
+                height={sizeHelper.calWp(25)}
+                color={theme.colors.white}
+              />
             </TouchableOpacity>
           </View>
           <View
-          style={{width:sizeHelper.calWp(80),height:sizeHelper.calWp(80),borderRadius:sizeHelper.calWp(80),}}
+            style={{
+              width: sizeHelper.calWp(80),
+              height: sizeHelper.calWp(80),
+              borderRadius: sizeHelper.calWp(80),
+            }}
           >
             <Image
-            style={{width:"100%",height:"100%"}}
-            source={images.user}
+              style={{ width: "100%", height: "100%" }}
+              source={images.user}
             />
-
           </View>
         </View>
       </View>
@@ -78,37 +79,140 @@ const HomeScreen = ({ navigation, route }: any) => {
     <>
       <ScreenLayout
         paddingTop={10}
+        backgroundColor={theme.colors.white}
         style={{
           gap: sizeHelper.calHp(50),
+          backgroundColor:theme.colors.white
         }}
       >
         <HomeHeader />
 
-         <View style={{ gap: sizeHelper.calHp(10) }}>
+        <View style={{ gap: sizeHelper.calHp(5) }}>
+          <CustomText
+            text={`Hi Yessine 👋`}
+            size={47}
+            fontFam={fonts.InterTight_Bold}
+            color={theme.colors.secondry}
+            fontWeight={"700"}
+          />
 
-                        <CustomText
-                            text={`Hi Yessine 👋`}
-                            size={47}
-                            fontFam={fonts.InterTight_Bold}
-                            color={theme.colors.secondry}
+          <CustomText
+            text={`What are you up for today?`}
+            size={30}
+            fontFam={fonts.InterTight_Regular}
+            color={theme.colors.secondry}
+            fontWeight={"400"}
+          />
+        </View>
 
-                            fontWeight={"700"}
-                        />
+        <View style={{ paddingTop: "14%" }}>
+          <View
+            style={{
+              height: sizeHelper.calHp(410),
+              borderRadius: sizeHelper.calWp(40),
+              backgroundColor: theme.colors.primary,
+              padding: sizeHelper.calWp(30),
+              justifyContent: "flex-end",
+              gap: sizeHelper.calHp(25),
+            }}
+          >
+            <View
+              style={{
+                gap: sizeHelper.calHp(7),
+                width: "80%",
+                // paddingTop: "20%",
+              }}
+            >
+              <CustomText
+                text={`Can’t decide what to do together?`}
+                size={35}
+                fontFam={fonts.InterTight_SemiBold}
+                color={theme.colors.white}
+                fontWeight={"700"}
+              />
 
+              <CustomText
+                text={`Explore restaurants, movies, recipes & many more.`}
+                size={25}
+                fontFam={fonts.InterTight_Regular}
+                color={theme.colors.white}
+                fontWeight={"400"}
+              />
+            </View>
 
-                        <CustomText
-                            text={`What are you up for today?`}
-                            size={30}
-                            fontFam={fonts.InterTight_Regular}
-                            color={theme.colors.secondry}
+            <CustomButtom
+              textColor={theme.colors.black}
+              text="Create Room"
+              borderColor={theme.colors.white}
+              borderWidth={1}
+              bgColor={theme.colors.mustard}
+              borderRadius={999}
+              style={{ marginBottom: sizeHelper.calHp(10) }}
+              onPress={() => navigation.navigate("BottomTab")}
+              width={"100%"}
 
-                            fontWeight={"400"}
-                        />
+            >
+              <PlusIcon
+                width={sizeHelper.calWp(22)}
+                height={sizeHelper.calWp(22)}
+                // color={theme.colors.white}
+              />
+            </CustomButtom>
+          </View>
 
+          <View
+            style={{
+              position: "absolute",
+              width: "100%",
+              // height: 40,
+              // backgroundColor: "red",
+              top: sizeHelper.calHp(-24),
+              paddingRight: sizeHelper.calWp(40),
+            }}
+          >
+            <FastfoodImage
+              width={"110%"}
+              // height={sizeHelper.calWp(25)}
+              color={theme.colors.white}
+            />
+          </View>
+        </View>
 
+        <View style={{ gap: sizeHelper.calHp(15) }}>
+          <CustomText
+            text={`Your group is waiting on you?`}
+            size={28}
+            fontFam={fonts.InterTight_Medium}
+            color={theme.colors.secondry}
+            fontWeight={"600"}
+          />
+          <View
+            style={{
+              ...appStyles.rowjustify,
+              borderRadius: 999,
+              backgroundColor: theme.colors.background,
+              padding: sizeHelper.calWp(5),
+            }}
+          >
+             <CustomText
+            text={`Type Room #ID`}
+            size={25}
+            style={{marginLeft:sizeHelper.calWp(30)}}
+            color={theme.colors.secondry}
+          />
 
+           <CustomButtom
+              text="Join Room"
+              borderRadius={999}
+              paddingHorizontal={sizeHelper.calWp(45)}
+              onPress={() => navigation.navigate("CreateRoomCreditScreen")}
+                            height={70}
 
-                    </View>
+              // width={"50%"}
+            ></CustomButtom>
+
+          </View>
+        </View>
       </ScreenLayout>
     </>
   );

@@ -36,7 +36,7 @@ const CustomButton = ({
       borderColor: borderColor,
       paddingHorizontal: paddingHorizontal,
       flexDirection: 'row',
-      gap: sizeHelper.calWp(20),
+      gap: sizeHelper.calWp(15),
     };
 
     return [baseStyle, style] as StyleProp<ViewStyle>;

@@ -33,7 +33,7 @@ const ScreenLayout: React.FC<ScreenLayoutProps> = ({
 
   return (
     <>
-      <StatusBar backgroundColor="#F1F0F2" barStyle="dark-content" />
+      <StatusBar backgroundColor={backgroundColor ||"#F1F0F2"} barStyle="dark-content" />
 
       <SafeAreaView style={[styles.background, {
         backgroundColor,

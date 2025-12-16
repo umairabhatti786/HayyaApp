@@ -21,7 +21,7 @@ const CustomText = ({
 }: TextType) => {
   const memoizedStyle = useMemo(() => {
     const baseStyle = {
-      color: color || theme.colors.black,
+      color: color || theme.colors.secondry,
       fontSize: sizeHelper.calHp(size || 20),
       fontWeight: fontWeight || "500",
       fontFamily: fontFam || fonts.InterTight_Regular,

@@ -109,7 +109,7 @@ const CustomInput = ({
           }}
           placeholder={placeholder}
           multiline={multiline}
-          placeholderTextColor={placeholderTextColor || theme.colors.black+"40"}
+          placeholderTextColor={placeholderTextColor || theme.colors.black+"50"}
           keyboardType={keyboard}
           maxLength={maxLength}
           secureTextEntry={secureTextEntry || false}

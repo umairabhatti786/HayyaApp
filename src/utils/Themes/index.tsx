@@ -7,7 +7,8 @@ export const theme = {
     background:"#F1F0F2",
     red:"#FF0000",
     BluePurple:"#755FE21F",
-    LightBlue:"#95EAFF"
+    LightBlue:"#95EAFF",
+    mustard:"#EEC069",
    
   },
 };
