@@ -16,6 +16,7 @@ import { icons } from "../../../assets/icons";
 import CopyIcon from "../../../assets/svgs/copy.svg";
 import ShareIcon from "../../../assets/svgs/share.svg";
 import ClockIcon from "../../../assets/svgs/clock.svg";
+import BackArrow from "../../../assets/svgs/backArrow.svg";
 
 const CreateRoomLaunchScreen = ({ navigation, route }: any) => {
 
@@ -38,11 +39,10 @@ const CreateRoomLaunchScreen = ({ navigation, route }: any) => {
           onPress={() => navigation.goBack()}
           style={styles.back_container}
         >
-          <Image
-            style={styles.back_icon}
-            source={icons.back_arrow}
-            resizeMode="contain"
-          />
+           <BackArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
         </TouchableOpacity>
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
           <View
@@ -60,10 +60,10 @@ const CreateRoomLaunchScreen = ({ navigation, route }: any) => {
             />
             <CustomText
               text={`15`}
-              size={28}
-              //   fontFam={fonts.InterTight_Medium}
+              size={27}
+                fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-              //   fontWeight={"600"}
+                fontWeight={"600"}
             />
             <TouchableOpacity
               style={{

@@ -1,10 +1,5 @@
-import React, {useState } from "react";
-import {
-    View,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-} from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import sizeHelper from "../../../utils/Helpers";
 import ScreenLayout from "../../../components/ScreenLayout";
 import CustomText from "../../../components/Text";
@@ -14,247 +9,223 @@ import { appStyles } from "../../../utils/GlobalStyles";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { icons } from "../../../assets/icons";
-import { hasLowercaseRegex, hasNumberRegex, hasUppercaseRegex, minLengthRegex } from "../../../utils/Regex";
+import {
+  hasLowercaseRegex,
+  hasNumberRegex,
+  hasUppercaseRegex,
+  minLengthRegex,
+} from "../../../utils/Regex";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import BackArrow from "../../../assets/svgs/backArrow.svg";
+
+import CloseIcon from "../../../assets/svgs/close.svg";
+import EnableIcon from "../../../assets/svgs/enable.svg";
+
 const RegisterScreen = ({ navigation }: any) => {
-    const [showPassowrd, setShowPassowrd] = useState(false);
-    const [isConfirmPassword, setIsConfirmPassword] = useState(false)
-    const [values, setValues] = useState({
-        create_password: ""
-    })
-    const [strongPasswords, setStrongPasswords] = useState([
-        {
-            title: "Minimum 8 characters",
-            isValidate: false,
-            id: 1
-        },
-        {
-            title: "At least one number (0-9)",
-            isValidate: false,
-            id: 2
-        },
-        {
-            title: "At least one UPPERCASE letter",
-            isValidate: false,
-            id: 3
-        },
-        {
-            title: "At least one lowercase letter",
-            isValidate: false,
-            id: 4
-        }
-    ]);
+  const [showPassowrd, setShowPassowrd] = useState(false);
+  const [isConfirmPassword, setIsConfirmPassword] = useState(false);
+  const [values, setValues] = useState({
+    create_password: "",
+  });
+  const [strongPasswords, setStrongPasswords] = useState([
+    {
+      title: "Minimum 8 characters",
+      isValidate: false,
+      id: 1,
+    },
+    {
+      title: "At least one number (0-9)",
+      isValidate: false,
+      id: 2,
+    },
+    {
+      title: "At least one UPPERCASE letter",
+      isValidate: false,
+      id: 3,
+    },
+    {
+      title: "At least one lowercase letter",
+      isValidate: false,
+      id: 4,
+    },
+  ]);
 
-    return (
-        <>
-            <ScreenLayout
+  return (
+    <>
+      <ScreenLayout>
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps={"always"}
+          showsVerticalScrollIndicator={false}
+          style={{
+            flex: 1,
+            backgroundColor: theme.colors.background,
+          }}
+          contentContainerStyle={{
+            gap: sizeHelper.calHp(50),
+          }}
+        >
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.back_container}
+          >
+            <BackArrow
+              height={sizeHelper.calWp(25)}
+              width={sizeHelper.calWp(25)}
+            />
+          </TouchableOpacity>
+          <View style={{ gap: sizeHelper.calHp(10) }}>
+            <CustomText
+              text={`Register yourself`}
+              size={47}
+              fontFam={fonts.InterTight_Bold}
+              color={theme.colors.secondry}
+              fontWeight={"700"}
+            />
+            <CustomText
+              text={`Create your Account.`}
+              size={28}
+              fontFam={fonts.InterTight_Regular}
+              color={theme.colors.secondry}
+              fontWeight={"400"}
+            />
+          </View>
 
-            >
-                <KeyboardAwareScrollView
-                    keyboardShouldPersistTaps={"always"}
-                    showsVerticalScrollIndicator={false}
-                    style={{
-                        flex: 1,
-                        backgroundColor: theme.colors.background
-                    }}
-                    contentContainerStyle={{
-                        gap: sizeHelper.calHp(50),
+          <View
+            style={{
+              gap: sizeHelper.calHp(32),
+            }}
+          >
+            <CustomInput
+              label="Full Name"
+              borderRadius={999}
+              placeholder="Jhon Doe"
+            />
 
+            <CustomInput
+              label="Email"
+              borderRadius={999}
+              placeholder="example@mail.com"
+            />
 
-                    }}
+            <View style={{ gap: sizeHelper.calHp(15) }}>
+              <CustomInput
+                label="Create Password"
+                borderRadius={999}
+                value={values.create_password}
+                secureTextEntry={showPassowrd}
+                onChangeText={(txt: string) => {
+                  setValues({ ...values, create_password: txt });
+                  setStrongPasswords((prev) =>
+                    prev.map((item) => {
+                      if (item.id === 1)
+                        return {
+                          ...item,
+                          isValidate: minLengthRegex.test(txt),
+                        };
+                      if (item.id === 2)
+                        return {
+                          ...item,
+                          isValidate: hasNumberRegex.test(txt),
+                        };
+                      if (item.id === 3)
+                        return {
+                          ...item,
+                          isValidate: hasUppercaseRegex.test(txt),
+                        };
+                      if (item.id === 4)
+                        return {
+                          ...item,
+                          isValidate: hasLowercaseRegex.test(txt),
+                        };
+                      return item;
+                    })
+                  );
+                }}
+                onRightSource={() => setShowPassowrd(!showPassowrd)}
+                rightSource={!showPassowrd ? icons.eye : icons.eye_off}
+                placeholder="Password"
+              />
 
-                >
-                    <TouchableOpacity
-                        onPress={() => navigation.goBack()}
-
-                        style={styles.back_container}
-                    >
-                        <Image style={styles.back_icon}
-                            source={icons.back_arrow}
-                            resizeMode="contain" />
-
-
-                    </TouchableOpacity>
-                    <View style={{ gap: sizeHelper.calHp(10) }}>
-
-                        <CustomText
-                            text={`Register yourself`}
-                            size={47}
-                            fontFam={fonts.InterTight_Bold}
-                            color={theme.colors.secondry}
-                            fontWeight={"700"}
-                        />
-                        <CustomText
-                            text={`Create your Account.`}
-                            size={28}
-                            fontFam={fonts.InterTight_Regular}
-                            color={theme.colors.secondry}
-                            fontWeight={"400"}
-                        />
-
-                    </View>
-
+              <View style={{ gap: sizeHelper.calHp(10) }}>
+                {strongPasswords.map((item, index) => {
+                  return (
                     <View
-                        style={{
-                            gap: sizeHelper.calHp(32),
-                        }}
+                      key={index.toString()}
+                      style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}
                     >
+                      {item?.isValidate ? <EnableIcon /> : <CloseIcon />}
 
-                        <CustomInput
-                            label="Full Name"
-                            borderRadius={999}
-                            placeholder="Jhon Doe"
-                        />
-
-                        <CustomInput
-                            label="Email"
-                            borderRadius={999}
-                            placeholder="example@mail.com"
-                        />
-
-                        <View style={{ gap: sizeHelper.calHp(15) }}>
-
-
-                            <CustomInput
-                                label="Create Password"
-                                borderRadius={999}
-                                value={values.create_password}
-                                secureTextEntry={showPassowrd}
-                                onChangeText={(txt: string) => {
-                                    setValues({ ...values, create_password: txt })
-                                    setStrongPasswords(prev =>
-                                        prev.map(item => {
-                                            if (item.id === 1) return { ...item, isValidate: minLengthRegex.test(txt) };
-                                            if (item.id === 2) return { ...item, isValidate: hasNumberRegex.test(txt) };
-                                            if (item.id === 3) return { ...item, isValidate: hasUppercaseRegex.test(txt) };
-                                            if (item.id === 4) return { ...item, isValidate: hasLowercaseRegex.test(txt) };
-                                            return item;
-                                        })
-                                    );
-
-                                }}
-                                onRightSource={() => setShowPassowrd(!showPassowrd)}
-                                rightSource={!showPassowrd ? icons.eye : icons.eye_off}
-                                placeholder="Password"
-                            />
-
-                            <View style={{ gap: sizeHelper.calHp(10) }}>
-                                {
-                                    strongPasswords.map((item, index) => {
-
-                                        return (
-                                            <View
-                                                key={index.toString()}
-                                                style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}
-                                            >
-
-                                                <Image style={{ height: sizeHelper.calWp(20), width: sizeHelper.calWp(20) }}
-                                                    source={item?.isValidate ? icons.check : icons.cross}
-                                                    resizeMode="contain" />
-
-                                                <CustomText
-                                                    text={item?.title}
-                                                    fontFam={fonts.InterTight_Regular}
-                                                    color={theme.colors.secondry}
-                                                    fontWeight={"400"}
-                                                />
-
-                                            </View>
-                                        )
-                                    })
-                                }
-
-
-                            </View>
-
-
-
-                            <CustomInput
-                                label="Confirm Password"
-                                borderRadius={999}
-                                secureTextEntry={isConfirmPassword}
-                                onRightSource={() => setIsConfirmPassword(!isConfirmPassword)}
-                                rightSource={!isConfirmPassword ? icons.eye : icons.eye_off}
-                                placeholder="Password"
-                            />
-
-                        </View>
-
-
-
-
-
-
-
-
-
-
-                        <CustomButtom
-                            textColor={theme.colors.white}
-
-                            text="Register"
-                            borderRadius={999}
-                            onPress={() => navigation.navigate("VerificationScreen")}
-                            width={"100%"}
-                        />
-
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate("LoginScreen")}
-                            style={{
-                                alignItems: "center",
-                                gap: sizeHelper.calWp(5),
-                                alignSelf: "center",
-                                flexDirection: "row"
-                            }}
-                        >
-                            <CustomText
-
-                                text={"Already have an account?"}
-                                color={theme.colors.secondry}
-                                fontWeight="400"
-                                size={23}
-                                fontFam={fonts.InterTight_Regular}
-                            />
-
-                            <CustomText
-
-                                text={"Login"}
-                                color={theme.colors.primary}
-                                fontWeight="600"
-                                size={25}
-                                fontFam={fonts.InterTight_SemiBold}
-                            />
-                        </TouchableOpacity>
-
-
-
+                      <CustomText
+                        text={item?.title}
+                        fontFam={fonts.InterTight_Regular}
+                        color={theme.colors.secondry}
+                        fontWeight={"400"}
+                      />
                     </View>
+                  );
+                })}
+              </View>
 
+              <CustomInput
+                label="Confirm Password"
+                borderRadius={999}
+                secureTextEntry={isConfirmPassword}
+                onRightSource={() => setIsConfirmPassword(!isConfirmPassword)}
+                rightSource={!isConfirmPassword ? icons.eye : icons.eye_off}
+                placeholder="Password"
+              />
+            </View>
 
+            <CustomButtom
+              textColor={theme.colors.white}
+              text="Register"
+              borderRadius={999}
+              onPress={() => navigation.navigate("VerificationScreen")}
+              width={"100%"}
+            />
 
+            <TouchableOpacity
+              onPress={() => navigation.navigate("LoginScreen")}
+              style={{
+                alignItems: "center",
+                gap: sizeHelper.calWp(5),
+                alignSelf: "center",
+                flexDirection: "row",
+              }}
+            >
+              <CustomText
+                text={"Already have an account?"}
+                color={theme.colors.secondry}
+                fontWeight="400"
+                size={23}
+                fontFam={fonts.InterTight_Regular}
+              />
 
-
-
-
-
-
-                </KeyboardAwareScrollView>
-
-
-
-            </ScreenLayout>
-        </>
-    );
+              <CustomText
+                text={"Login"}
+                color={theme.colors.primary}
+                fontWeight="600"
+                size={25}
+                fontFam={fonts.InterTight_SemiBold}
+              />
+            </TouchableOpacity>
+          </View>
+        </KeyboardAwareScrollView>
+      </ScreenLayout>
+    </>
+  );
 };
 
 export default RegisterScreen;
 
 const styles = StyleSheet.create({
-    back_container: {
-        height: sizeHelper.calWp(40), width: sizeHelper.calWp(40)
-    },
-    back_icon: {
-        height: sizeHelper.calWp(25), width: sizeHelper.calWp(25)
-    }
-
+  back_container: {
+    height: sizeHelper.calWp(40),
+    width: sizeHelper.calWp(40),
+  },
+  back_icon: {
+    height: sizeHelper.calWp(25),
+    width: sizeHelper.calWp(25),
+  },
 });

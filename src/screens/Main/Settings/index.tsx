@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  StyleSheet,View,Image,
-  TouchableOpacity,Switch,Modal
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  Switch,
+  Modal,
 } from "react-native";
 import sizeHelper from "../../../utils/Helpers";
 import ScreenLayout from "../../../components/ScreenLayout";
@@ -11,94 +15,256 @@ import { fonts } from "../../../utils/Themes/fonts";
 import { theme } from "../../../utils/Themes";
 import { images } from "../../../assets/images";
 import CustomInput from "../../../components/Input";
-import CustomButton from "../../../components/Button"
+import CustomButton from "../../../components/Button";
+import { appStyles } from "../../../utils/GlobalStyles";
+import LogoIcon from "../../../assets/svgs/logo.svg";
+import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
+import PlusIcon from "../../../assets/svgs/plus.svg";
+import NextArrow from "../../../assets/svgs/nextArrow.svg";
+import LocationModal from "../../../components/LocationModal";
+import LanguageModal from "../../../components/LanguageModal";
 
 const SettingsScreen = ({ navigation, route }: any) => {
-  const [isOn, setIsOn] = useState(false); 
-  const [isNotificantionOn, setIsNotificantionOn] = useState(false); 
+  const [isOn, setIsOn] = useState(false);
+  const [isNotificantionOn, setIsNotificantionOn] = useState(true);
+  const [isEmailOn, setIsEmailOn] = useState(false);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
 
-
-const Language =[
-{
-id:1,
-image:images.uk,
-name:"English"
-
-},
-{
-  id:2,
-  image:images.arabia,
-  name:"عربي"
-  
-  },{
-    id:1,
-    image:images.itli,
-    name:"Русский"
-    
-    },{
-      id:1,
-      image:images.france,
-      name:"Française"
-      
-      },
-
-
-]
-
-   return (
-<View style={{padding:sizeHelper.calHp(30),marginTop:sizeHelper.calHp(70),flex:1}}>
-<View style={{flexDirection:"row",gap:sizeHelper.calWp(180)}}>
-<CustomText text={"Settings"} 
-size={42}
- fontWeight="700" 
- fontFam={fonts.InterTight_SemiBold}
-/>
-<View>
-<View style={{height:sizeHelper.calHp(70),
-  width:sizeHelper.calWp(210), 
-  backgroundColor:theme.colors.BluePurple,
-  borderRadius:99,flexDirection:"row",alignItems:"center",gap:sizeHelper.calWp(15)
-  }}>
-
-<Image
-            style={{width:sizeHelper.calWp(60),height:sizeHelper.calWp(60)}}
-            source={images.Group8} resizeMode="contain"
+  const ToggleCard = ({ isOn, onPress, title, ischildren,children }: any) => {
+    return (
+      <View
+        style={{
+          width: "100%",
+          backgroundColor: theme.colors.white,
+          borderRadius: sizeHelper.calWp(20),
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: sizeHelper.calWp(20),
+          height:sizeHelper.calHp(80)
+        }}
+      >
+        <CustomText
+          text={title}
+          size={23}
+          fontWeight="600"
+          fontFam={fonts.InterTight_Medium}
+        />
+        {!ischildren ? (
+          <TouchableOpacity
+            onPress={onPress}
+            activeOpacity={0.8}
+            style={[
+              styles.track,
+              {
+                backgroundColor: isOn ? "#5A4FE9" : "#ccc",
+                borderWidth: 1,
+                borderColor: isOn ? "#5A4FE9" : theme.colors.secondry + "40",
+              },
+            ]}
+          >
+            <View
+              style={[
+                styles.thumb,
+                {
+                  alignSelf: isOn ? "flex-end" : "flex-start",
+                  backgroundColor: isOn ? theme.colors.white : "#79747E",
+                },
+              ]}
             />
-<CustomText text={"15"} size={30}  fontFam={fonts.InterTight_Medium}
-/>
-<TouchableOpacity style={{height:sizeHelper.calWp(80),
-  width:sizeHelper.calWp(80),
-  backgroundColor:theme.colors.secondry,
-  borderRadius:99,alignItems:"center",justifyContent:"center",
+          </TouchableOpacity>
+        ):(
+          children
+        )}
+      </View>
+    );
+  };
 
-  }}>
-<Image
-            style={{width:sizeHelper.calWp(30),height:sizeHelper.calWp(30)}}
-            source={images.plus} resizeMode="contain"
+  const Language = [
+    {
+      id: 1,
+      image: images.uk,
+      name: "English",
+    },
+    {
+      id: 2,
+      image: images.arabia,
+      name: "عربي",
+    },
+    {
+      id: 1,
+      image: images.itli,
+      name: "Русский",
+    },
+    {
+      id: 1,
+      image: images.france,
+      name: "Française",
+    },
+  ];
+
+  const HomeHeader = () => {
+    return (
+      <View style={appStyles.rowjustify}>
+        <CustomText
+          text={"Settings"}
+          size={35}
+          fontWeight="700"
+          fontFam={fonts.InterTight_SemiBold}
+        />
+        <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
+          <View
+            style={{
+              ...appStyles.row,
+              paddingRight: sizeHelper.calWp(5),
+              backgroundColor: "#755FE21F",
+              paddingLeft: sizeHelper.calWp(15),
+              borderRadius: 999,
+            }}
+          >
+            <LogoPartIcon
+              width={sizeHelper.calWp(50)}
+              height={sizeHelper.calWp(50)}
             />
-</TouchableOpacity>
-<View style={{marginLeft:sizeHelper.calWp(5)}}>
-<View style={{height:sizeHelper.calWp(80),
-  width:sizeHelper.calWp(80),
-  backgroundColor:theme.colors.LightBlue,
-  borderRadius:99,alignItems:"center",justifyContent:"center",
-
-  }}>
-<Image
-            style={{width:sizeHelper.calWp(80),height:sizeHelper.calWp(80)}}
-            source={images.avatar} resizeMode="contain"
+            <CustomText
+              text={`15`}
+              size={27}
+                fontFam={fonts.InterTight_Medium}
+              color={theme.colors.secondry}
+                fontWeight={"600"}
             />
-</View>
-</View>
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                padding: sizeHelper.calWp(25),
+                borderRadius: 999,
+                backgroundColor: theme.colors.secondry,
+                marginLeft: sizeHelper.calWp(20),
+              }}
+            >
+              <PlusIcon
+                width={sizeHelper.calWp(25)}
+                height={sizeHelper.calWp(25)}
+                color={theme.colors.white}
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              width: sizeHelper.calWp(80),
+              height: sizeHelper.calWp(80),
+              borderRadius: sizeHelper.calWp(80),
+            }}
+          >
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              source={images.user}
+            />
+          </View>
+        </View>
+      </View>
+    );
+  };
 
-</View>
+  return (
+    <>
 
-</View>
+      <ScreenLayout
+      paddingTop={13}
+      style={{
+        gap: sizeHelper.calHp(50),
+      }}
+    >
+      <HomeHeader />
+      <View style={{ gap: sizeHelper.calHp(25) }}>
+        <ToggleCard
+          isOn={isNotificantionOn}
+          title={"Push Notifications"}
+          onPress={() => setIsNotificantionOn(!isNotificantionOn)}
+        />
+
+        <ToggleCard
+          title={"Email Notifications"}
+          isOn={isEmailOn}
+          onPress={() => setIsEmailOn(!isEmailOn)}
+        />
+
+          <ToggleCard
+          title={"Default Location"}
+          ischildren={true}
+        >
+          <TouchableOpacity
+          onPress={()=>setModalVisible(true)}
+          >
+
+            <CustomText
+              text={`+ Add`}
+              textDecorationLine="underline"
+              size={23}
+                fontFam={fonts.InterTight_SemiBold}
+              color={theme.colors.primary}
+                fontWeight={"600"}
+            />
+
+          </TouchableOpacity>
+          </ToggleCard>
+
+            <ToggleCard
+          title={"Language"}
+          ischildren={true}
+        >
+          <TouchableOpacity
+          onPress={()=>setIsLanguageModalVisible(true)}
+          >
+
+            <CustomText
+              text={`English`}
+              textDecorationLine="underline"
+              size={23}
+                fontFam={fonts.InterTight_SemiBold}
+              color={theme.colors.primary}
+                fontWeight={"600"}
+            />
+
+          </TouchableOpacity>
+          </ToggleCard>
 
 
-</View>
+             <ToggleCard
+          title={"Contact Support"}
+          ischildren={true}
+        >
+          <TouchableOpacity>
+
+            <NextArrow
+                width={sizeHelper.calWp(25)}
+                height={sizeHelper.calWp(25)}
+                color={theme.colors.white}
+              />
+
+          </TouchableOpacity>
+          </ToggleCard>
+      </View>
+
+      <TouchableOpacity
+      style={{alignSelf:"center",paddingVertical:sizeHelper.calHp(30)}}
+      >
+
+            <CustomText
+              text={`Logout`}
+              size={23}
+                fontFam={fonts.InterTight_SemiBold}
+              color={theme.colors.logout}
+                fontWeight={"600"}
+            />
+
+          </TouchableOpacity>
+
+      {/* <View style={{padding:sizeHelper.calHp(30),marginTop:sizeHelper.calHp(70),flex:1}}>
+
 <View>
 <View style={{height:sizeHelper.calHp(100),
   width:"100%",
@@ -386,7 +552,20 @@ return(
 
 </View>
 
-</View>
+</View> */}
+    </ScreenLayout>
+         <LocationModal
+    isVisible={modalVisible}
+    setIsVisible={setModalVisible}
+    />
+
+         <LanguageModal
+    isVisible={isLanguageModalVisible}
+    setIsVisible={setIsLanguageModalVisible}
+    />
+   
+    </>
+  
   );
 };
 
@@ -394,30 +573,30 @@ export default SettingsScreen;
 
 const styles = StyleSheet.create({
   track: {
-    width: 60, 
-    height: 34, 
-    borderRadius: 20,
+    width: sizeHelper.calWp(90),
+    height: sizeHelper.calHp(43),
+    borderRadius: 999,
     padding: 4,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   thumb: {
-    width: 23,
-    height: 23,
+    width: sizeHelper.calWp(40),
+    height: sizeHelper.calWp(40),
     borderRadius: 14,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   track2: {
-    width: 60, 
-    height: 34, 
+    width: 60,
+    height: 34,
     borderRadius: 20,
     padding: 4,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   thumb2: {
-    width: 19, 
+    width: 19,
     height: 19,
     borderRadius: 14,
-    backgroundColor: '#79747E',
+    backgroundColor: "#79747E",
   },
   modalOverlay: {
     flex: 1,
@@ -439,8 +618,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginTop: 20,
   },
-  closeIcon: {
-   
-  
-  },
+  closeIcon: {},
 });

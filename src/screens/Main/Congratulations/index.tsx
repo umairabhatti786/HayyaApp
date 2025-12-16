@@ -16,6 +16,9 @@ import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { icons } from "../../../assets/icons";
 import { images } from "../../../assets/images";
+import BackArrow from "../../../assets/svgs/backArrow.svg";
+
+
 const CongratulationsScreen = ({ navigation,route }: any) => {
 
     const screenDetail=route?.params?.screenDetail
@@ -34,16 +37,18 @@ const CongratulationsScreen = ({ navigation,route }: any) => {
 
                         style={styles.back_container}
                     >
-                        <Image style={styles.back_icon}
-                            source={icons.back_arrow}
-                            resizeMode="contain" />
+                       <BackArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
 
 
                     </TouchableOpacity>
+                    {
+                        screenDetail?.img
+                    }
 
-                    <Image style={{width:"100%",height:"40%"}}
-                            source={screenDetail?.img}
-                            resizeMode="contain" />
+                    
                     <View style={{ gap: sizeHelper.calHp(10),alignItems:"center" }}>
 
                         <CustomText

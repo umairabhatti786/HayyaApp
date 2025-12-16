@@ -13,6 +13,7 @@ import PlusIcon from "../../../assets/svgs/plus.svg";
 import { icons } from "../../../assets/icons";
 import PlanningImage from "../../../assets/svgs/planning.svg";
 import CustomInput from "../../../components/Input";
+import BackArrow from "../../../assets/svgs/backArrow.svg";
 
 const CreateRoomCreditPlanningScreen = ({ navigation, route }: any) => {
   const HomeHeader = () => {
@@ -24,11 +25,10 @@ const CreateRoomCreditPlanningScreen = ({ navigation, route }: any) => {
           onPress={() => navigation.goBack()}
           style={styles.back_container}
         >
-          <Image
-            style={styles.back_icon}
-            source={icons.back_arrow}
-            resizeMode="contain"
-          />
+           <BackArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
         </TouchableOpacity>
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
           <View
@@ -46,10 +46,10 @@ const CreateRoomCreditPlanningScreen = ({ navigation, route }: any) => {
             />
             <CustomText
               text={`15`}
-              size={28}
-              //   fontFam={fonts.InterTight_Medium}
+              size={27}
+                fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-              //   fontWeight={"600"}
+                fontWeight={"600"}
             />
             <TouchableOpacity
               style={{

@@ -13,6 +13,10 @@ import { images } from "../../../assets/images";
 import ScreenLayout from "../../../components/ScreenLayout";
 import AppIntroSlider from "react-native-app-intro-slider";
 import CustomText from "../../../components/Text";
+import SplashLogo from "../../../assets/svgs/splashLogo.svg";
+import Intro1 from "../../../assets/svgs/intro1.svg";
+import Intro2 from "../../../assets/svgs/intro2.svg";
+import Intro3 from "../../../assets/svgs/intro3.svg";
 
 const Slides = [
 
@@ -20,19 +24,19 @@ const Slides = [
         key: "One",
         title: "Decide Together Effortlessly",
         des: "Describe what do you want to do? (e.g. Where can we eat Italian nearby?)",
-        image: images.intro1,
+        image:  <Intro1 height={ sizeHelper.calHp(750)} width={"110%"} />
     },
     {
         key: "Two",
         title: "Share what you’re craving",
         des: "Tell us what you’re in the mood for, and we’ll serve up tailored suggestions.",
-        image: images.intro2,
+        image:  <Intro2 height={ sizeHelper.calHp(750)} width={"110%"} />
     },
     {
         key: "Three",
         title: "Swipe. Match. Go!",
         des: "Swipe through options, match with your group, and make plans in seconds.",
-        image: images.intro3,
+        image:  <Intro3 height={ sizeHelper.calHp(750)} width={"110%"} />
     }
 
 
@@ -53,9 +57,12 @@ const OnbordingScreen = ({ navigation }: any) => {
     const renderItem = ({ item }: any) => {
         return (
             <View style={{ alignItems: 'center', justifyContent: 'center', }}>
-                <Image source={item.image} style={{ width: "110%", height: sizeHelper.calHp(750) }}
+                {
+                    item?.image
+                }
+                {/* <Image source={item.image} style={{ width: "110%", height: sizeHelper.calHp(750) }}
                     resizeMode="contain"
-                />
+                /> */}
                 <View style={{ gap: sizeHelper.calHp(10),  }}>
                     <CustomText
                         text={item?.title}

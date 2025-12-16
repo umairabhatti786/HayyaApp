@@ -14,6 +14,7 @@ import PlusIcon from "../../../assets/svgs/plus.svg";
 import FastfoodImage from "../../../assets/svgs/fastfood.svg";
 import { icons } from "../../../assets/icons";
 import ZeroCreditImage from "../../../assets/svgs/zeroCredit.svg";
+import BackArrow from "../../../assets/svgs/backArrow.svg";
 
 const CreateRoomCreditScreen = ({ navigation, route }: any) => {
   const HomeHeader = () => {
@@ -25,11 +26,10 @@ const CreateRoomCreditScreen = ({ navigation, route }: any) => {
           onPress={() => navigation.goBack()}
           style={styles.back_container}
         >
-          <Image
-            style={styles.back_icon}
-            source={icons.back_arrow}
-            resizeMode="contain"
-          />
+           <BackArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
         </TouchableOpacity>
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
           <View
@@ -47,10 +47,10 @@ const CreateRoomCreditScreen = ({ navigation, route }: any) => {
             />
             <CustomText
               text={`15`}
-              size={28}
-              //   fontFam={fonts.InterTight_Medium}
+              size={27}
+                fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-              //   fontWeight={"600"}
+                fontWeight={"600"}
             />
             <TouchableOpacity
               style={{

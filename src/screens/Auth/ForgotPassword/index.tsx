@@ -15,6 +15,10 @@ import CustomButtom from "../../../components/Button";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { icons } from "../../../assets/icons";
+import BackArrow from "../../../assets/svgs/backArrow.svg";
+
+   
+
 const ForgotPasswordScreen = ({ navigation }: any) => {
 
     return (
@@ -35,9 +39,10 @@ const ForgotPasswordScreen = ({ navigation }: any) => {
 
                         style={styles.back_container}
                     >
-                        <Image style={styles.back_icon}
-                            source={icons.back_arrow}
-                            resizeMode="contain" />
+                        <BackArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
 
 
                     </TouchableOpacity>

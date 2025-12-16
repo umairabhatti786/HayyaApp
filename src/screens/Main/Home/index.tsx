@@ -12,6 +12,7 @@ import { images } from "../../../assets/images";
 import CustomButtom from "../../../components/Button";
 import PlusIcon from "../../../assets/svgs/plus.svg";
 import FastfoodImage from "../../../assets/svgs/fastfood.svg";
+import LinearGradient from 'react-native-linear-gradient';
 
 const HomeScreen = ({ navigation, route }: any) => {
   const HomeHeader = () => {
@@ -37,10 +38,10 @@ const HomeScreen = ({ navigation, route }: any) => {
             />
             <CustomText
               text={`15`}
-              size={28}
-              //   fontFam={fonts.InterTight_Medium}
+              size={27}
+                fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-              //   fontWeight={"600"}
+                fontWeight={"600"}
             />
             <TouchableOpacity
               style={{
@@ -107,10 +108,12 @@ const HomeScreen = ({ navigation, route }: any) => {
 
         <View style={{ paddingTop: "14%" }}>
           <View
+            // colors={['#755FE2', '#6347EC', ]}
+
             style={{
               height: sizeHelper.calHp(410),
               borderRadius: sizeHelper.calWp(40),
-              backgroundColor: theme.colors.primary,
+              backgroundColor: "#755FE2",
               padding: sizeHelper.calWp(30),
               justifyContent: "flex-end",
               gap: sizeHelper.calHp(25),
