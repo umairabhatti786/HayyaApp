@@ -16,7 +16,12 @@ export const images = {
     user2:require("../images/user2.png"),
     user3:require("../images/user3.png"),
     user4:require("../images/user4.png"),
-    user5:require("../images/user5.png"),
+    next:require("../images/next.png"),
+    close:require("../images/close.png"),
+    uk:require("../images/uk.png"),
+    arabia:require("../images/arabia.png"),
+    itli:require("../images/itli.png"),
+    france:require("../images/france.png"),
 
 
 }
