@@ -10,7 +10,8 @@ export const theme = {
     LightBlue:"#95EAFF",
    blue:"#5A4FE9",
    mustard:"#EEC069",
-   logout:"#FF0011"
+   logout:"#FF0011",
+   PalePurple:"#E2DEF0"
    
   },
 };

@@ -24,6 +24,7 @@ export const images = {
     arabia:require("../images/arabia.png"),
     itli:require("../images/itli.png"),
     france:require("../images/france.png"),
+    Group1:require("../images/Group1.png"),
 
 
 }

@@ -14,6 +14,8 @@ import BottomTab from "../BottomTab";
 import CreateRoomCreditScreen from "../../screens/Main/CreateRoom/CreateRoomCredit";
 import CreateRoomCreditPlanningScreen from "../../screens/Main/CreateRoom/CreateRoomCreditPlanning";
 import CreateRoomLaunchScreen from "../../screens/Main/CreateRoom/CreateRoomLaunch";
+import CreditsScreen from "../../screens/Main/Credits"
+import CreditsScreen2 from "../../screens/Main/Credits2/CreditsScreen2"
 
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
@@ -22,7 +24,14 @@ const AppStack = () => {
                  <StatusBar translucent backgroundColor="#F1F0F2" barStyle="dark-content" />
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+      <Stack.Screen name="CreditsScreen" component={CreditsScreen} />
+      <Stack.Screen name="CreditsScreen2" component={CreditsScreen2} />
+
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+
+
+
 
       <Stack.Screen name="OnbordingScreen" component={OnbordingScreen} />
 
