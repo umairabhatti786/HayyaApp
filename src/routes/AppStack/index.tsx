@@ -25,8 +25,8 @@ const AppStack = () => {
 
       <Stack.Navigator screenOptions={{ headerShown: false }}>
 
-      <Stack.Screen name="CreditsScreen" component={CreditsScreen} />
-      <Stack.Screen name="CreditsScreen2" component={CreditsScreen2} />
+      {/* <Stack.Screen name="CreditsScreen" component={CreditsScreen} />
+      <Stack.Screen name="CreditsScreen2" component={CreditsScreen2} /> */}
 
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
 
