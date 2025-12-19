@@ -32,7 +32,7 @@ const SettingsScreen = ({ navigation, route }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
 
-  const ToggleCard = ({ isOn, onPress, title, ischildren,children }: any) => {
+  const ToggleCard = ({ isOn, onPress, title, ischildren, children }: any) => {
     return (
       <View
         style={{
@@ -43,7 +43,7 @@ const SettingsScreen = ({ navigation, route }: any) => {
           alignItems: "center",
           justifyContent: "space-between",
           padding: sizeHelper.calWp(20),
-          height:sizeHelper.calHp(80)
+          height: sizeHelper.calHp(80)
         }}
       >
         <CustomText
@@ -75,7 +75,7 @@ const SettingsScreen = ({ navigation, route }: any) => {
               ]}
             />
           </TouchableOpacity>
-        ):(
+        ) : (
           children
         )}
       </View>
@@ -131,9 +131,9 @@ const SettingsScreen = ({ navigation, route }: any) => {
             <CustomText
               text={`15`}
               size={27}
-                fontFam={fonts.InterTight_Medium}
+              fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-                fontWeight={"600"}
+              fontWeight={"600"}
             />
             <TouchableOpacity
               style={{
@@ -173,97 +173,97 @@ const SettingsScreen = ({ navigation, route }: any) => {
     <>
 
       <ScreenLayout
-      paddingTop={13}
-      style={{
-        gap: sizeHelper.calHp(50),
-      }}
-    >
-      <HomeHeader />
-      <View style={{ gap: sizeHelper.calHp(25) }}>
-        <ToggleCard
-          isOn={isNotificantionOn}
-          title={"Push Notifications"}
-          onPress={() => setIsNotificantionOn(!isNotificantionOn)}
-        />
-
-        <ToggleCard
-          title={"Email Notifications"}
-          isOn={isEmailOn}
-          onPress={() => setIsEmailOn(!isEmailOn)}
-        />
+        paddingTop={13}
+        style={{
+          gap: sizeHelper.calHp(50),
+        }}
+      >
+        <HomeHeader />
+        <View style={{ gap: sizeHelper.calHp(25) }}>
+          <ToggleCard
+            isOn={isNotificantionOn}
+            title={"Push Notifications"}
+            onPress={() => setIsNotificantionOn(!isNotificantionOn)}
+          />
 
           <ToggleCard
-          title={"Default Location"}
-          ischildren={true}
-        >
-          <TouchableOpacity
-          onPress={()=>setModalVisible(true)}
+            title={"Email Notifications"}
+            isOn={isEmailOn}
+            onPress={() => setIsEmailOn(!isEmailOn)}
+          />
+
+          <ToggleCard
+            title={"Default Location"}
+            ischildren={true}
           >
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+            >
 
-            <CustomText
-              text={`+ Add`}
-              textDecorationLine="underline"
-              size={23}
+              <CustomText
+                text={`+ Add`}
+                textDecorationLine="underline"
+                size={23}
                 fontFam={fonts.InterTight_SemiBold}
-              color={theme.colors.primary}
+                color={theme.colors.primary}
                 fontWeight={"600"}
-            />
+              />
 
-          </TouchableOpacity>
+            </TouchableOpacity>
           </ToggleCard>
 
-            <ToggleCard
-          title={"Language"}
-          ischildren={true}
-        >
-          <TouchableOpacity
-          onPress={()=>setIsLanguageModalVisible(true)}
+          <ToggleCard
+            title={"Language"}
+            ischildren={true}
           >
+            <TouchableOpacity
+              onPress={() => setIsLanguageModalVisible(true)}
+            >
 
-            <CustomText
-              text={`English`}
-              textDecorationLine="underline"
-              size={23}
+              <CustomText
+                text={`English`}
+                textDecorationLine="underline"
+                size={23}
                 fontFam={fonts.InterTight_SemiBold}
-              color={theme.colors.primary}
+                color={theme.colors.primary}
                 fontWeight={"600"}
-            />
+              />
 
-          </TouchableOpacity>
+            </TouchableOpacity>
           </ToggleCard>
 
 
-             <ToggleCard
-          title={"Contact Support"}
-          ischildren={true}
-        >
-          <TouchableOpacity>
+          <ToggleCard
+            title={"Contact Support"}
+            ischildren={true}
+          >
+            <TouchableOpacity>
 
-            <NextArrow
+              <NextArrow
                 width={sizeHelper.calWp(25)}
                 height={sizeHelper.calWp(25)}
                 color={theme.colors.white}
               />
 
-          </TouchableOpacity>
+            </TouchableOpacity>
           </ToggleCard>
-      </View>
+        </View>
 
-      <TouchableOpacity
-      style={{alignSelf:"center",paddingVertical:sizeHelper.calHp(30)}}
-      >
+        <TouchableOpacity
+          style={{ alignSelf: "center", paddingVertical: sizeHelper.calHp(30) }}
+        >
 
-            <CustomText
-              text={`Logout`}
-              size={23}
-                fontFam={fonts.InterTight_SemiBold}
-              color={theme.colors.logout}
-                fontWeight={"600"}
-            />
+          <CustomText
+            text={`Logout`}
+            size={23}
+            fontFam={fonts.InterTight_SemiBold}
+            color={theme.colors.logout}
+            fontWeight={"600"}
+          />
 
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-      {/* <View style={{padding:sizeHelper.calHp(30),marginTop:sizeHelper.calHp(70),flex:1}}>
+        {/* <View style={{padding:sizeHelper.calHp(30),marginTop:sizeHelper.calHp(70),flex:1}}>
 
 <View>
 <View style={{height:sizeHelper.calHp(100),
@@ -553,19 +553,19 @@ return(
 </View>
 
 </View> */}
-    </ScreenLayout>
-         <LocationModal
-    isVisible={modalVisible}
-    setIsVisible={setModalVisible}
-    />
+      </ScreenLayout>
+      <LocationModal
+        isVisible={modalVisible}
+        setIsVisible={setModalVisible}
+      />
 
-         <LanguageModal
-    isVisible={isLanguageModalVisible}
-    setIsVisible={setIsLanguageModalVisible}
-    />
-   
+      <LanguageModal
+        isVisible={isLanguageModalVisible}
+        setIsVisible={setIsLanguageModalVisible}
+      />
+
     </>
-  
+
   );
 };
 

@@ -18,6 +18,7 @@ import { images } from "../../assets/images";
 import SettingIcon from "../../assets/svgs/setting.svg";
 import { fonts } from "../../utils/Themes/fonts";
 import HomeIcon from "../../assets/svgs/home.svg";
+import HistoryStack from "../HistoryStack";
 
 const BottomTab = ({ navigation }: any) => {
   const Bottom = createBottomTabNavigator();
@@ -107,8 +108,8 @@ const BottomTab = ({ navigation }: any) => {
 
       {/* Calendar Tab */}
       <Bottom.Screen
-        name="HistoryScreen"
-        component={HistoryScreen}
+        name="HistoryStack"
+        component={HistoryStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
