@@ -10,7 +10,7 @@ import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
 import ScreenLayout from "../../../components/ScreenLayout";
 import { appStyles } from "../../../utils/GlobalStyles";
 import { theme } from "../../../utils/Themes";
-import LogoIcon from "../../../assets/svgs/logo.svg";
+import NextArrow from "../../../assets/svgs/nextArrow.svg";
 import { fonts } from "../../../utils/Themes/fonts";
 import PlusIcon from "../../../assets/svgs/plus.svg";
 import CustomText from "../../../components/Text";
@@ -18,75 +18,88 @@ import { images } from "../../../assets/images";
 import { FlatList } from "react-native-gesture-handler";
 import Text from "../../../components/Text";
 
-const card = [
+const cardData = [
   {
     title: 'Let’s watch a movie this Saturday',
     text: 'Room created by Yessine',
-    different: "Pending",
-    user: images.user,
-    user2: images.user2,
-    user3: images.user3,
-    next: images.next2,
-    number: '+2'
+    status: "Pending",
+     JoinUsers:[
+        { id: 1, img: images.user },
+        { id: 2, img: images.user2 },
+        { id: 3, img: images.user3 },
+        { id: 4, img: images.user3 },
+        { id: 5, img: images.user3 },
+      ],
 
   },
   {
     title: 'Let’s watch a movie this Saturday',
     text: 'Room created by Yessine',
-    different: "Pending",
-    user: images.user,
-    user2: images.user2,
-    user3: images.user3,
-    next: images.next2,
-    number: '+2'
+    status: "Pending",
+    JoinUsers:[
+        { id: 1, img: images.user },
+        { id: 2, img: images.user2 },
+        { id: 3, img: images.user3 },
+        { id: 4, img: images.user3 },
+        { id: 5, img: images.user3 },
+      ],
+  },
+  {
+    title: 'Let’s watch a movie this Saturday',
+    text: 'Room created by Yessine',
+    status: "Launched",
+   
+     JoinUsers:[
+        { id: 1, img: images.user },
+        { id: 2, img: images.user2 },
+        { id: 3, img: images.user3 },
+        { id: 4, img: images.user3 },
+        { id: 5, img: images.user3 },
+      ],
 
   },
   {
     title: 'Let’s watch a movie this Saturday',
     text: 'Room created by Yessine',
-    different: "Launched",
-    user: images.user,
-    user2: images.user2,
-    user3: images.user3,
-    next: images.next2,
-    number: '+2'
+    status: "Launched",
+    JoinUsers:[
+        { id: 1, img: images.user },
+        { id: 2, img: images.user2 },
+        { id: 3, img: images.user3 },
+        { id: 4, img: images.user3 },
+        { id: 5, img: images.user3 },
+      ],
+   
 
   },
   {
     title: 'Let’s watch a movie this Saturday',
     text: 'Room created by Yessine',
-    different: "Launched",
-    user: images.user,
-    user2: images.user2,
-    user3: images.user3,
-    next: images.next2,
-    number: '+2'
+    status: "Completed",
 
-  },
-  {
-    title: 'Let’s watch a movie this Saturday',
-    text: 'Room created by Yessine',
-    different: "Completed",
-    user: images.user,
-    user2: images.user2,
-    user3: images.user3,
-    next: images.next2,
-    number: '+2'
+     JoinUsers:[
+        { id: 1, img: images.user },
+        { id: 2, img: images.user2 },
+        { id: 3, img: images.user3 },
+        { id: 4, img: images.user3 },
+        { id: 5, img: images.user3 },
+      ],
 
   },
 ]
+
+
 const HistoryScreen = ({ navigation, route }: any) => {
-  return (
-    <ScreenLayout
-      style={{
-        gap: sizeHelper.calHp(70),
-      }}
-    >
+
+
+   const HomeHeader = () => {
+    return (
       <View style={appStyles.rowjustify}>
         <CustomText
           text={"History"}
-          size={46}
+          size={35}
           fontWeight="700"
+          fontFam={fonts.InterTight_SemiBold}
         />
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
           <View
@@ -126,95 +139,127 @@ const HistoryScreen = ({ navigation, route }: any) => {
               />
             </TouchableOpacity>
           </View>
-          <View
+          <TouchableOpacity
+          onPress={()=>navigation.navigate("Profile")}
             style={{
               width: sizeHelper.calWp(80),
               height: sizeHelper.calWp(80),
               borderRadius: sizeHelper.calWp(80),
             }}
           >
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <Image
               style={{ width: "100%", height: "100%" }}
               source={images.user}
             />
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
+    );
+  }
+  return (
+    <ScreenLayout
+       paddingTop={13}
+        style={{
+          gap: sizeHelper.calHp(50),
+        }}
+    >
+     <HomeHeader/>
       <FlatList
-        data={card}
+        data={cardData}
         keyExtractor={(item) => item.title}
-        renderItem={({ item ,index}) => (
-          <View style={styles.card}>
-            <View>
-              <CustomText
-                text={item.title}
-                size={25}
-                fontWeight="700"
-              />
-              <CustomText
-                text={item.text}
-                size={23}
+        renderItem={({ item ,index}:any) => (
+         <TouchableOpacity
+         activeOpacity={0.5}
+         onPress={()=>navigation.navigate("HistoryDetailScreen",{data:item})}
+          style={styles.card}>
 
-              />
-              <View
-                style={[styles.differentbg,
-                  item.different === "Launched" ? { backgroundColor: theme.colors.primary } : item.different === "Completed" ? { backgroundColor: theme.colors.background } : null
-                  ]}>
-                <CustomText text={item.different} fontWeight="600" style={{ color: item.different === "Launched" ? theme.colors.white : theme.colors.black }} />
-              </View>
-            </View>
+             <View style={{ gap: sizeHelper.calHp(5) }}>
+            <CustomText
+              text={"Let’s watch a movie this Saturday"}
+              size={22}
+              fontWeight="700"
+            />
+            <CustomText text={"Room created by Yessine"} 
+            color={theme.colors.secondry+"80"}
+            size={20} />
+
+             <View
+                    style={{
+                      backgroundColor: item?.status=="Pending"?theme.colors?.mustard:item?.status=="Launched"?theme.colors.primary:  theme.colors.secondry + "10",
+                      paddingHorizontal: sizeHelper.calWp(25),
+                      paddingVertical: sizeHelper.calHp(8),
+                      borderRadius: 999,
+                      alignSelf:"flex-start"
+                    }}
+
+                  >
+                    <CustomText
+                      text={item?.status}
+                      size={17}
+                      color={item?.status=="Launched"?theme.colors.white: theme.colors.secondry}
+                    />
+                  </View>
+                
+           
+          </View>
+        <View style={{ ...appStyles.row, gap: sizeHelper.calWp(25) }}>
+         
+       
+
+
+           <View style={{ flexDirection: "row", alignItems: "center" }}>
+          {item?.JoinUsers?.slice(0, 3).map((item:any, index:any) => (
+            <Image
+              key={item.id}
+              source={item.img}
+              style={{
+                width: sizeHelper.calWp(45),
+                height: sizeHelper.calWp(45),
+                borderRadius: 999,
+                marginLeft: index === 0 ? 0 : -sizeHelper.calWp(25),
+              }}
+            />
+          ))}
+
+          {item?.JoinUsers?.length > 3 && (
             <View
               style={{
-                marginLeft: sizeHelper.calWp(20),
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
+                width: sizeHelper.calWp(45),
+                height: sizeHelper.calWp(45),
+                borderRadius: 999,
+                marginLeft: -sizeHelper.calWp(25),
+                backgroundColor: theme.colors.primary,
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <Image source={item.user}
-                style={{
-                  width: sizeHelper.calWp(50),
-                  height: sizeHelper.calWp(50)
-                }} />
-              <Image source={item.user2}
-                style={{
-                  width: sizeHelper.calWp(50),
-                  height: sizeHelper.calWp(50),
-                  position: 'absolute',
-                  left: sizeHelper.calWp(27),
-                }} />
-              <Image source={item.user3}
-                style={{
-                  width: sizeHelper.calWp(50),
-                  height: sizeHelper.calWp(50),
-                  position: 'absolute',
-                  left: sizeHelper.calWp(55),
-                }} />
               <CustomText
-                text={item.number}
-                size={25}
-                color="white"
-                style={{
-                  width: sizeHelper.calWp(50),
-                  height: sizeHelper.calWp(50),
-                  backgroundColor: theme.colors.primary,
-                  borderRadius: sizeHelper.calWp(25),
-                  textAlign: 'center',
-                  textAlignVertical: 'center',
-                  position: 'absolute',
-                  left: sizeHelper.calWp(80),
-                }}
-              />
-              <Image source={item.next}
-                style={{
-
-                  marginLeft: sizeHelper.calWp(90),
-                }}
+                text={`+${item?.JoinUsers?.length - 3}`}
+                size={20}
+                fontFam={fonts.InterTight_SemiBold}
+                color={theme.colors.white}
+                fontWeight={"600"}
               />
             </View>
-          </View>
+          )}
+        </View>
+
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.back_container}
+          >
+                <NextArrow
+                    height={sizeHelper.calWp(25)}
+                    width={sizeHelper.calWp(25)}
+                  />
+           
+          </TouchableOpacity>
+        </View>
+
+       
+
+       
+      </TouchableOpacity>
         )}
       />
 
@@ -226,12 +271,14 @@ export default HistoryScreen;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.colors.white,
-    padding: sizeHelper.calWp(30),
+      backgroundColor: theme.colors.white,
+    paddingHorizontal: sizeHelper.calWp(25),
+    paddingVertical: sizeHelper.calHp(25),
     borderRadius: sizeHelper.calWp(30),
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: sizeHelper.calHp(25)
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: sizeHelper.calHp(25),
   },
   differentbg: {
     backgroundColor: theme.colors.mustard,
@@ -239,5 +286,16 @@ const styles = StyleSheet.create({
     padding: sizeHelper.calHp(10), borderRadius: sizeHelper.calWp(30),
     alignItems: 'center',
     marginTop: sizeHelper.calHp(10)
-  }
+  },
+
+  back_container: {
+    height: sizeHelper.calWp(40),
+    width: sizeHelper.calWp(40),
+    justifyContent:"center",
+  alignItems:"flex-end"
+  },
+  back_icon: {
+    height: sizeHelper.calWp(25),
+    width: sizeHelper.calWp(25),
+  },
 });

@@ -16,6 +16,9 @@ import CreateRoomCreditPlanningScreen from "../../screens/Main/CreateRoom/Create
 import CreateRoomLaunchScreen from "../../screens/Main/CreateRoom/CreateRoomLaunch";
 import CreditsScreen from "../../screens/Main/Credits"
 import CreditsScreen2 from "../../screens/Main/Credits2/CreditsScreen2"
+import MatchSwipesSceen from "../../screens/Main/MatchSwipes";
+import MatchSwipesDetail from "../../screens/Main/MatchSwipesDetail";
+import HistoryDetailScreen from "../../screens/Main/HistoryDetail";
 
 const Stack = createNativeStackNavigator<any>();
 const AppStack = () => {
@@ -34,6 +37,8 @@ const AppStack = () => {
 
 
       <Stack.Screen name="OnbordingScreen" component={OnbordingScreen} />
+      <Stack.Screen name="MatchSwipesSceen" component={MatchSwipesSceen} />
+      <Stack.Screen name="MatchSwipesDetail" component={MatchSwipesDetail} />
 
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
               <Stack.Screen name="BottomTab" component={BottomTab} />

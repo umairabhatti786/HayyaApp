@@ -23,7 +23,6 @@ const CustomInput = ({
   onChangeText,
   onBlur,
   error,
-  editable,
   color,
   maxLength,
   placeholderTextColor,
@@ -42,6 +41,7 @@ const CustomInput = ({
   onRightSource,
   leftSource,
   rightSourceSize,
+  editable,
 }: InputProps) => {
   return (
     <View

@@ -18,6 +18,14 @@ export const images = {
     user4: require("../images/user4.png"),
     user5: require("../images/user5.png"),
 
+
+        movies: require("../images/movies.png"),
+    restaurants: require("../images/restaurants.png"),
+    netflix: require("../images/netflix.png"),
+    prime_video: require("../images/prime_video.png"),
+    family: require("../images/family.png"),
+
+
     next: require("../images/next.png"),
     next2: require("../images/next2.png"),
     close: require("../images/close.png"),

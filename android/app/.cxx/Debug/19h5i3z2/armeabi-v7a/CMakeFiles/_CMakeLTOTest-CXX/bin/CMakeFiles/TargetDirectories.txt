@@ -1,4 +1,0 @@
-/Users/umairabbas/Desktop/HayyaApp/android/app/.cxx/Debug/19h5i3z2/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/foo.dir
-/Users/umairabbas/Desktop/HayyaApp/android/app/.cxx/Debug/19h5i3z2/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/boo.dir
-/Users/umairabbas/Desktop/HayyaApp/android/app/.cxx/Debug/19h5i3z2/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/edit_cache.dir
-/Users/umairabbas/Desktop/HayyaApp/android/app/.cxx/Debug/19h5i3z2/armeabi-v7a/CMakeFiles/_CMakeLTOTest-CXX/bin/CMakeFiles/rebuild_cache.dir

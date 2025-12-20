@@ -277,7 +277,7 @@ const CreateRoomLaunchScreen = ({ navigation, route }: any) => {
               
               borderRadius={999}
               bgColor={theme.colors.secondry}
-              onPress={() => navigation.navigate("CreateRoomCreditScreen")}
+              // onPress={() => navigation.navigate("CreateRoomCreditScreen")}
               width={"37%"}
               height={70}
             >
@@ -312,7 +312,9 @@ const CreateRoomLaunchScreen = ({ navigation, route }: any) => {
           onPress={() => {
             setIsLaunchLoading(true);
             setTimeout(() => {
-                navigation.navigate("BottomTab");
+                          setIsLaunchLoading(false);
+
+                navigation.navigate("MatchSwipesSceen");
                 
             }, 3000);
 

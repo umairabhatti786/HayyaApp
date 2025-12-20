@@ -15,13 +15,9 @@ import CustomButtom from "../../../components/Button";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { icons } from "../../../assets/icons";
-import { images } from "../../../assets/images";
-import PlusIcon from "../../../assets/svgs/plus.svg";
-import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
 
-import BackArrow from "../../../assets/svgs/backArrow.svg";
 import PassowordCelebration from "../../../assets/svgs/passowordCelebration.svg";
-import { appStyles } from "../../../utils/GlobalStyles";
+import AppHeader from "../../../components/AppHeader";
 
 const EditProfile = ({ navigation }: any) => {
   const [showPassowrd, setShowPassowrd] = useState(false);
@@ -29,74 +25,20 @@ const EditProfile = ({ navigation }: any) => {
 
   return (
     <>
-      <ScreenLayout>
-          <View style={appStyles.rowjustify}>
-                <View style={styles.arrowview}>
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <Image source={icons.back_arrow} style={styles.backarrow} />
-                    </TouchableOpacity>
-                    <CustomText
-                        text={"Edit Profile"}
-                        size={32}
-                        fontWeight="700"
-                        fontFam={fonts.InterTight_SemiBold}
-                    />
-                </View>
-                <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
-                    <View
-                        style={{
-                            ...appStyles.row,
-                            paddingRight: sizeHelper.calWp(5),
-                            backgroundColor: "#755FE21F",
-                            paddingLeft: sizeHelper.calWp(15),
-                            borderRadius: 999,
-                        }}
-                    >
-                        <LogoPartIcon
-                            width={sizeHelper.calWp(50)}
-                            height={sizeHelper.calWp(50)}
-                        />
-                        <CustomText
-                            text={`15`}
-                            size={27}
-                            fontFam={fonts.InterTight_Medium}
-                            color={theme.colors.secondry}
-                            fontWeight={"600"}
-                        />
-                        <TouchableOpacity
-                            style={{
-                                alignItems: "center",
-                                justifyContent: "center",
-                                padding: sizeHelper.calWp(25),
-                                borderRadius: 999,
-                                backgroundColor: theme.colors.secondry,
-                                marginLeft: sizeHelper.calWp(20),
-                            }}
-                        >
-                            <PlusIcon
-                                width={sizeHelper.calWp(25)}
-                                height={sizeHelper.calWp(25)}
-                                color={theme.colors.white}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View
-                        style={{
-                            width: sizeHelper.calWp(80),
-                            height: sizeHelper.calWp(80),
-                            borderRadius: sizeHelper.calWp(80),
-                        }}
-                    >
-                        <Image
-                            style={{ width: "100%", height: "100%" }}
-                            source={images.user}
-                        />
-                    </View>
-                </View>
-            </View>
+      <ScreenLayout
+       style={{
+        paddingBottom: sizeHelper.calHp(160),
+        flex: 1,
+      }}
+      paddingTop={10}
+      >
+         <AppHeader
+  
+       title={"Edit Profile"} />
           <View style={{ 
             marginTop: sizeHelper.calHp(30),
-            gap: sizeHelper.calHp(50),
+            gap: sizeHelper.calHp(20),
+            flex:1
            }}>
             
             <CustomInput
@@ -108,6 +50,8 @@ const EditProfile = ({ navigation }: any) => {
             <CustomInput
               label="Email"
               borderRadius={999}
+                            backgroundColor={theme.colors.secondry+"20"}
+
               placeholder="example@mail.com"
             />
 
@@ -129,17 +73,13 @@ const EditProfile = ({ navigation }: any) => {
               placeholder="Password"
             />
           </View>
-          <View
-          style={{
-        flex:1,
-        justifyContent:'flex-end',
-        marginBottom: sizeHelper.calHp(190),
-          }}
-          >
+        
             
-          <CustomButtom
+         
+         <CustomButtom
             textColor={theme.colors.white}
             text="Save"
+            
             borderRadius={999}
             onPress={() => {
               navigation.navigate("CongratulationsScreen", {
@@ -154,7 +94,6 @@ const EditProfile = ({ navigation }: any) => {
             }}
             width={"100%"}
           />
-          </View>
       </ScreenLayout>
     </>
   );

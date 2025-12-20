@@ -1,3 +1,5 @@
+import 'react-native-reanimated';
+
 import React, { useEffect } from "react";
 import RootNavigator from "./src/routes/RootNavigator";
 import { View } from "react-native";

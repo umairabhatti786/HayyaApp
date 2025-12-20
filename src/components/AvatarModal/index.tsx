@@ -44,6 +44,7 @@ const AvatarModal = ({ isVisible, setIsVisible }: any) => {
           <View style={styles.header}>
             <CustomText
               text="Select Avatar"
+              fontWeight="600"
               fontFam={fonts.InterTight_Bold}
               size={24}
             />
@@ -102,14 +103,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: sizeHelper.calWp(40),
     paddingVertical: sizeHelper.calHp(25),
-    paddingHorizontal: sizeHelper.calWp(20),
+    paddingHorizontal: sizeHelper.calWp(30),
+    gap:sizeHelper.calHp(30)
   },
 
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: sizeHelper.calHp(25),
+    // marginBottom: sizeHelper.calHp(25),
   },
 
   grid: {
