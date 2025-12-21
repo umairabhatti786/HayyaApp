@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import Modal from "react-native-modal";
-
 import sizeHelper from "../../utils/Helpers";
 import { fonts } from "../../utils/Themes/fonts";
 import { theme } from "../../utils/Themes";
@@ -9,7 +8,7 @@ import CustomText from "../Text";
 import CustomButtom from "../Button";
 import CrossIcon from "../../assets/svgs/cross.svg";
 
-const avatars = [
+const avatarsData = [
   require("../../assets/images/user.png"),
   require("../../assets/images/user2.png"),
   require("../../assets/images/user2.png"),
@@ -28,7 +27,6 @@ const avatars = [
 
 const AvatarModal = ({ isVisible, setIsVisible }: any) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
-
   return (
     <Modal
       animationIn="slideInUp"
@@ -40,7 +38,6 @@ const AvatarModal = ({ isVisible, setIsVisible }: any) => {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContainer}>
-
           <View style={styles.header}>
             <CustomText
               text="Select Avatar"
@@ -58,16 +55,17 @@ const AvatarModal = ({ isVisible, setIsVisible }: any) => {
           </View>
 
           <View style={styles.grid}>
-            {avatars.map((item, index) => {
+            {avatarsData.map((item, index) => {
               const isSelected = selectedIndex === index;
 
               return (
                 <TouchableOpacity
                   key={index}
-                  style={[
-                    styles.avatarWrapper,
-                    isSelected && styles.selectedBorder,
-                  ]}
+                  style={{
+                    ...styles.avatarWrapper,
+                    borderWidth: isSelected ? 3 : -1,
+                    borderColor: theme.colors.black,
+                  }}
                   onPress={() => setSelectedIndex(index)}
                 >
                   <Image source={item} style={styles.avatar} />
@@ -104,14 +102,13 @@ const styles = StyleSheet.create({
     borderRadius: sizeHelper.calWp(40),
     paddingVertical: sizeHelper.calHp(25),
     paddingHorizontal: sizeHelper.calWp(30),
-    gap:sizeHelper.calHp(30)
+    gap: sizeHelper.calHp(30),
   },
 
   header: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    // marginBottom: sizeHelper.calHp(25),
   },
 
   grid: {
@@ -135,8 +132,4 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
 
-  selectedBorder: {
-    borderWidth: 3,
-    borderColor: theme.colors.black,
-  },
 });

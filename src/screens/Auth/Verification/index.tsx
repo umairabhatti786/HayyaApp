@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   StyleSheet,
-  Image,
   TouchableOpacity,
   Pressable,
   Keyboard,
@@ -13,26 +12,20 @@ import CustomText from "../../../components/Text";
 import { fonts } from "../../../utils/Themes/fonts";
 import CustomButtom from "../../../components/Button";
 import { appStyles } from "../../../utils/GlobalStyles";
-import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
-import { icons } from "../../../assets/icons";
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from "react-native-confirmation-code-field";
-import { images } from "../../../assets/images";
 import BackArrow from "../../../assets/svgs/backArrow.svg";
 import CelebrationImage from "../../../assets/svgs/celebration.svg";
 
 const VerificationScreen = ({ navigation, route }: any) => {
   const [value, setValue] = useState("");
-  const [isWrongOtp, setIsWrongOtp] = useState(false);
   const isForgot = route?.params?.isForgot;
-
   const ref = useBlurOnFulfill({ value, cellCount: 4 });
-
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -51,7 +44,7 @@ const VerificationScreen = ({ navigation, route }: any) => {
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.back_container}
+            style={appStyles.back_container}
           >
             <BackArrow
               height={sizeHelper.calWp(25)}
@@ -105,16 +98,12 @@ const VerificationScreen = ({ navigation, route }: any) => {
                   style={{
                     ...styles.codeFieldCell,
 
-                    backgroundColor: isWrongOtp
-                      ? theme.colors.red + "20"
-                      : theme.colors.white,
+                    backgroundColor: theme.colors.white,
                   }}
                 >
                   <CustomText
                     size={30}
-                    color={
-                      isWrongOtp ? theme.colors.red : theme.colors.secondry
-                    }
+                    color={theme.colors.secondry}
                     text={symbol || (isFocused ? <Cursor /> : "0")}
                   />
                 </View>
@@ -152,10 +141,9 @@ const VerificationScreen = ({ navigation, route }: any) => {
 
             <TouchableOpacity
               style={{
-                alignItems: "center",
+                ...appStyles.row,
                 gap: sizeHelper.calWp(5),
                 alignSelf: "center",
-                flexDirection: "row",
               }}
             >
               <CustomText
@@ -184,15 +172,6 @@ const VerificationScreen = ({ navigation, route }: any) => {
 export default VerificationScreen;
 
 const styles = StyleSheet.create({
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
-  },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
-
   codeFieldRoot: {
     justifyContent: "center",
     alignItems: "center",

@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useState } from "react";
 import {
   View,
   StyleSheet,
-  Image,
   TouchableOpacity,
   Pressable,
   Keyboard,
@@ -15,7 +14,6 @@ import CustomButtom from "../../../components/Button";
 import { appStyles } from "../../../utils/GlobalStyles";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
-import { images } from "../../../assets/images";
 import { icons } from "../../../assets/icons";
 import GoogleIcon from "../../../assets/svgs/google.svg";
 import AppleIcon from "../../../assets/svgs/apple.svg";
@@ -29,21 +27,16 @@ const LoginScreen = ({ navigation }: any) => {
       <ScreenLayout>
         <Pressable
           onPress={() => Keyboard.dismiss()}
-          style={{
-            flex: 1,
-            gap: sizeHelper.calHp(50),
-            backgroundColor: theme.colors.background,
-          }}
+          style={appStyles.inner_container}
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.back_container}
+            style={appStyles.back_container}
           >
-                <BackArrow
-                    height={sizeHelper.calWp(25)}
-                    width={sizeHelper.calWp(25)}
-                  />
-           
+            <BackArrow
+              height={sizeHelper.calWp(25)}
+              width={sizeHelper.calWp(25)}
+            />
           </TouchableOpacity>
           <View style={{ gap: sizeHelper.calHp(10) }}>
             <CustomText
@@ -85,7 +78,6 @@ const LoginScreen = ({ navigation }: any) => {
 
               <TouchableOpacity
                 onPress={() => navigation.navigate("ForgotPasswordScreen")}
-                // style={{ alignSelf: "center", padding: sizeHelper.calWp(10) }}
               >
                 <CustomText
                   text={"Forgot Password?"}
@@ -108,10 +100,9 @@ const LoginScreen = ({ navigation }: any) => {
             <TouchableOpacity
               onPress={() => navigation.navigate("RegisterScreen")}
               style={{
-                alignItems: "center",
+                ...appStyles.row,
                 gap: sizeHelper.calWp(5),
                 alignSelf: "center",
-                flexDirection: "row",
               }}
             >
               <CustomText
@@ -138,13 +129,8 @@ const LoginScreen = ({ navigation }: any) => {
                   marginTop: sizeHelper.calHp(50),
                 }}
               >
-                <View
-                  style={{
-                    flex: 1,
-                    height: sizeHelper.calHp(2),
-                    backgroundColor: "#01010110",
-                  }}
-                />
+                <View style={styles.line} />
+
                 <CustomText
                   text={"or"}
                   fontWeight="400"
@@ -152,13 +138,7 @@ const LoginScreen = ({ navigation }: any) => {
                   size={27}
                   fontFam={fonts.InterTight_Regular}
                 />
-                <View
-                  style={{
-                    flex: 1,
-                    height: sizeHelper.calHp(2),
-                    backgroundColor: "#01010110",
-                  }}
-                />
+                <View style={styles.line} />
               </View>
 
               <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
@@ -178,12 +158,10 @@ const LoginScreen = ({ navigation }: any) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.authButton}>
-
-                       <AppleIcon
+                  <AppleIcon
                     height={sizeHelper.calWp(55)}
                     width={sizeHelper.calWp(55)}
                   />
-                 
 
                   <CustomText
                     text={"Login with Apple"}
@@ -215,12 +193,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     backgroundColor: theme.colors.white,
   },
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
+  line: {
+    flex: 1,
+    height: sizeHelper.calHp(2),
+    backgroundColor: theme.colors.secondry + "10",
   },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
+ 
 });

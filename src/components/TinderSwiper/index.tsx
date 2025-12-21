@@ -11,26 +11,22 @@ import {
   GestureHandlerRootView,
   State,
 } from "react-native-gesture-handler";
-
 import HeartIcon from "../../assets/svgs/heart.svg";
 import CrossWhite from "../../assets/svgs/crossWhite.svg";
-import sizeHelper from "../../utils/Helpers";
+import sizeHelper, { screentHeight } from "../../utils/Helpers";
+import RestaurantCard from "../RestaurantCard";
+import MovieCard from "../MovieCard";
 import { theme } from "../../utils/Themes";
+import CustomText from "../Text";
+import { fonts } from "../../utils/Themes/fonts";
 
 const { width } = Dimensions.get("window");
 const SWIPE_THRESHOLD = 120;
 
-const TinderSwiper = () => {
-  const [cards, setCards] = useState([
-    { id: "1", color: "#0B1C3F" },
-    { id: "2", color: "#F5B26B" },
-    { id: "3", color: "#7C6CF2" },
-    { id: "4", color: "#0B1C3F" },
-    { id: "5", color: "#F5B26B" },
-    { id: "6", color: "#7C6CF2" },
-  ]);
-
+const TinderSwiper = ({ data, navigation }: any) => {
+  const [cards, setCards] = useState(data);
   const translateX = useRef(new Animated.Value(0)).current;
+  const frontScale = useRef(new Animated.Value(1)).current;
 
   /* ROTATION */
   const rotate = translateX.interpolate({
@@ -51,8 +47,12 @@ const TinderSwiper = () => {
     extrapolate: "clamp",
   });
 
-  const cardStyle = {
-    transform: [{ translateX }, { rotate }],
+ const cardStyle = {
+    transform: [
+      { translateX },
+      { rotate },
+      { scale: frontScale }, // 🔥 micro smoothness
+    ],
   };
 
   const onGestureEvent = Animated.event(
@@ -60,7 +60,7 @@ const TinderSwiper = () => {
     { useNativeDriver: true }
   );
 
-  const onHandlerStateChange = (event) => {
+  const onHandlerStateChange = (event: any) => {
     if (event.nativeEvent.state === State.END) {
       const x = event.nativeEvent.translationX;
 
@@ -69,15 +69,24 @@ const TinderSwiper = () => {
       else resetCard();
     }
   };
-
-  const swipeCard = (toValue) => {
+   const swipeCard = (toValue: number) => {
     Animated.timing(translateX, {
       toValue,
       duration: 220,
       useNativeDriver: true,
     }).start(() => {
-      setCards((prev) => prev.slice(1));
+      // prepare next card
+      frontScale.setValue(0.98);
+
+      setCards((prev: any[]) => prev.slice(1));
       translateX.setValue(0);
+
+      // subtle smooth settle
+      Animated.timing(frontScale, {
+        toValue: 1,
+        duration: 70,
+        useNativeDriver: true,
+      }).start();
     });
   };
 
@@ -89,10 +98,26 @@ const TinderSwiper = () => {
     }).start();
   };
 
+  if (!cards || cards.length === 0) {
+    return (
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={styles.emptyContainer}>
+          <CustomText
+            text={"No cards available"}
+            size={30}
+            fontFam={fonts.InterTight_SemiBold}
+            color={theme.colors.secondry}
+            fontWeight={"600"}
+          />
+        </View>
+      </GestureHandlerRootView>
+    );
+  }
+
   const renderItem = ({ item, index }) => {
     const isTop = index === 0;
     const scale = 1 - index * 0.04;
-    const translateY = -index * 18;
+    const translateY = -index * 25;
 
     return (
       <View
@@ -100,58 +125,123 @@ const TinderSwiper = () => {
           styles.cardWrapper,
           {
             transform: [{ scale }, { translateY }],
-            zIndex: cards.length - index, // 🔥 FIX 1
+            zIndex: cards.length - index,
             elevation: cards.length - index,
           },
         ]}
-        pointerEvents={isTop ? "auto" : "none"} // 🔥 FIX 2
       >
         {isTop ? (
           <PanGestureHandler
             onGestureEvent={onGestureEvent}
             onHandlerStateChange={onHandlerStateChange}
           >
-            <Animated.View
-              style={[
-                styles.card,
-                cardStyle,
-                { backgroundColor: item.color },
-              ]}
-            >
-              {/* ❌ NOPE */}
+            <Animated.View style={[styles.card, cardStyle]}>
+              {item?.isMovies ? (
+                <>
+                  <MovieCard
+                    item={item}
+                    onPress={() =>
+                      navigation.navigate("MatchSwipesDetail", {
+                        data: item,
+                      })
+                    }
+                  />
+                </>
+              ) : (
+                <>
+                  <View style={{width:"100%",backgroundColor:"red"}}>
+
+                <RestaurantCard
+                mainStyle={{width:"100%"}}
+                  item={item}
+                  onPress={() =>
+                    navigation.navigate("MatchSwipesDetail", {
+                      data: item,
+                    })
+                  }
+                />
+
+              </View>
+                </>
+              )}
+              {/* BASE CARD */}
+
+              {/* NOPE */}
               <Animated.View
+                pointerEvents="none"
                 style={[
-                  styles.nopeOverlay,
-                  { opacity: nopeOpacity },
+                  styles.Overlay,
+                  { opacity: nopeOpacity, backgroundColor: "#FE2F3D50" },
                 ]}
               >
-                <CrossWhite
-                  width={sizeHelper.calWp(40)}
-                  height={sizeHelper.calWp(40)}
-                />
+                <TouchableOpacity
+                  style={{
+                    ...styles.circle,
+                    backgroundColor: theme.colors.reject,
+                  }}
+                >
+                  <CrossWhite
+                    width={sizeHelper.calWp(40)}
+                    height={sizeHelper.calWp(40)}
+                  />
+                </TouchableOpacity>
               </Animated.View>
 
-              {/* ❤️ LIKE */}
+              {/* LIKE */}
               <Animated.View
+                pointerEvents="none"
                 style={[
-                  styles.likeOverlay,
-                  { opacity: likeOpacity },
+                  styles.Overlay,
+                  { opacity: likeOpacity, backgroundColor: "#43CD2E50" },
                 ]}
               >
-                <HeartIcon
-                  width={sizeHelper.calWp(50)}
-                  height={sizeHelper.calWp(50)}
-                />
+                <TouchableOpacity
+                  style={{
+                    ...styles.circle,
+                    backgroundColor: theme.colors.accept,
+                  }}
+                >
+                  <HeartIcon
+                    width={sizeHelper.calWp(50)}
+                    height={sizeHelper.calWp(50)}
+                  />
+                </TouchableOpacity>
               </Animated.View>
             </Animated.View>
           </PanGestureHandler>
         ) : (
-          <View
-            style={[
-              styles.card,
-              { backgroundColor: item.color },
-            ]}
-          />
+          <View style={styles.card}>
+            {item?.isMovies ? (
+              <>
+                <MovieCard
+                  item={item}
+                  onPress={() =>
+                    navigation.navigate("MatchSwipesDetail", {
+                      data: item,
+                    })
+                  }
+                />
+              </>
+            ) : (
+              <>
+              <View style={{width:"100%"}}>
+
+                <RestaurantCard
+                                mainStyle={{width:"100%"}}
+
+                  item={item}
+                  onPress={() =>
+                    navigation.navigate("MatchSwipesDetail", {
+                      data: item,
+                    })
+                  }
+                />
+
+              </View>
+                
+              </>
+            )}
+          </View>
         )}
       </View>
     );
@@ -161,12 +251,11 @@ const TinderSwiper = () => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Animated.FlatList
-          data={cards.slice(0, 4)}
-          keyExtractor={(item) => item.id}
+          data={cards.slice(0, 3)}
+          keyExtractor={(item) => item.id?.toString()}
           renderItem={renderItem}
           scrollEnabled={false}
           removeClippedSubviews={false}
-          contentContainerStyle={{ flex: 1 }}
           style={StyleSheet.absoluteFill}
         />
       </View>
@@ -175,45 +264,50 @@ const TinderSwiper = () => {
 };
 
 export default TinderSwiper;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    
   },
   cardWrapper: {
     position: "absolute",
     alignSelf: "center",
-    marginTop:40
+    top: sizeHelper.calHp(40),
+  },
+
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   card: {
-    width: 320,
-    height: 420,
+    width: "93%",
+    height: screentHeight / 1.6,
     borderRadius: 24,
-    justifyContent: "center",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.15,
-    shadowRadius: 20,
+    // overflow: "hidden",
+    backgroundColor:theme.colors.white,
+    alignSelf: "center",
+
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowColor: theme.colors.black,
+    shadowRadius: 7,
     elevation: 10,
   },
-  likeOverlay: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    backgroundColor: theme?.colors?.success || "#4CAF50",
+  Overlay: {
+    ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 24,
   },
-  nopeOverlay: {
-    position: "absolute",
+
+  circle: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
     width: sizeHelper.calWp(110),
     height: sizeHelper.calWp(110),
-    borderRadius: 999,
-    backgroundColor: "rgba(244,67,54,0.55)",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

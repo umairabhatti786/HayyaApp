@@ -4,7 +4,6 @@ import { fonts } from "../../utils/Themes/fonts";
 import sizeHelper from "../../utils/Helpers";
 import CustomText from "../Text";
 import { theme } from "../../utils/Themes";
-import CustomInput from "../Input";
 import CustomButtom from "../Button";
 import CrossIcon from "../../assets/svgs/cross.svg";
 import Modal from "react-native-modal";
@@ -13,9 +12,9 @@ import { appStyles } from "../../utils/GlobalStyles";
 import CheckIcon from "../../assets/svgs/check.svg";
 
 const LanguageModal = ({ isVisible, setIsVisible }: any) => {
-    const [selectedLanguage,setSelectedLanguage]= useState <any>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<any>(null);
 
-    const [Language,setLanguage]= useState([
+  const [Language, setLanguage] = useState([
     {
       id: 1,
       image: images.uk,
@@ -40,7 +39,7 @@ const LanguageModal = ({ isVisible, setIsVisible }: any) => {
       name: "Française",
       isSelected: false,
     },
-  ])
+  ]);
   return (
     <>
       <Modal
@@ -82,19 +81,9 @@ const LanguageModal = ({ isVisible, setIsVisible }: any) => {
               {Language.map((item, index) => {
                 return (
                   <TouchableOpacity
-                  key={index.toString()}
-                  onPress={()=>setSelectedLanguage(item)}
-                    style={{
-                      width: "100%",
-                      height: sizeHelper.calHp(70),
-                      backgroundColor: theme.colors.background,
-                      borderRadius: 999,
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      paddingHorizontal: sizeHelper.calWp(20),
-                      gap: sizeHelper.calWp(20),
-                    }}
+                    key={index.toString()}
+                    onPress={() => setSelectedLanguage(item)}
+                    style={styles.language_container}
                   >
                     <View
                       style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}
@@ -108,17 +97,11 @@ const LanguageModal = ({ isVisible, setIsVisible }: any) => {
                       />
                       <CustomText text={item.name} size={28} />
                     </View>
-                    {
-                        selectedLanguage?.id===item.id && (
-
-                                 <CheckIcon
-                // height={sizeHelper.calWp(30)}
-                // width={sizeHelper.calWp(30)}
-              />
-                        )
-                    }
-
-                
+                    {selectedLanguage?.id === item.id && (
+                      <CheckIcon
+                   
+                      />
+                    )}
                   </TouchableOpacity>
                 );
               })}
@@ -128,13 +111,12 @@ const LanguageModal = ({ isVisible, setIsVisible }: any) => {
               colors={theme.colors.primary}
               text="Save"
               size={27}
-              onPress={()=>setIsVisible(false)}
+              onPress={() => setIsVisible(false)}
               style={{
                 marginTop: sizeHelper.calHp(20),
               }}
               width={"100%"}
               borderRadius={40}
-              // height={80}
             />
           </View>
         </View>
@@ -159,7 +141,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: sizeHelper.calWp(20),
     paddingVertical: sizeHelper.calHp(30),
     alignItems: "center",
-    gap:sizeHelper.calHp(10)
+    gap: sizeHelper.calHp(10),
   },
   closeButton: {
     backgroundColor: theme.colors.primary,
@@ -167,5 +149,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginTop: 20,
+  },
+  language_container: {
+    width: "100%",
+    height: sizeHelper.calHp(70),
+    backgroundColor: theme.colors.background,
+    borderRadius: 999,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: sizeHelper.calWp(20),
+    gap: sizeHelper.calWp(20),
   },
 });

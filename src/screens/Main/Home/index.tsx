@@ -12,9 +12,8 @@ import { images } from "../../../assets/images";
 import CustomButtom from "../../../components/Button";
 import PlusIcon from "../../../assets/svgs/plus.svg";
 import FastfoodImage from "../../../assets/svgs/fastfood.svg";
-import LinearGradient from 'react-native-linear-gradient';
 
-const HomeScreen = ({ navigation, route }: any) => {
+const HomeScreen = ({ navigation}: any) => {
   const HomeHeader = () => {
     return (
       <View style={appStyles.rowjustify}>
@@ -39,20 +38,11 @@ const HomeScreen = ({ navigation, route }: any) => {
             <CustomText
               text={`15`}
               size={27}
-                fontFam={fonts.InterTight_Medium}
+              fontFam={fonts.InterTight_Medium}
               color={theme.colors.secondry}
-                fontWeight={"600"}
+              fontWeight={"600"}
             />
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                padding: sizeHelper.calWp(25),
-                borderRadius: 999,
-                backgroundColor: theme.colors.secondry,
-                marginLeft: sizeHelper.calWp(20),
-              }}
-            >
+            <TouchableOpacity style={styles.add_container}>
               <PlusIcon
                 width={sizeHelper.calWp(25)}
                 height={sizeHelper.calWp(25)}
@@ -60,13 +50,7 @@ const HomeScreen = ({ navigation, route }: any) => {
               />
             </TouchableOpacity>
           </View>
-          <View
-            style={{
-              width: sizeHelper.calWp(80),
-              height: sizeHelper.calWp(80),
-              borderRadius: sizeHelper.calWp(80),
-            }}
-          >
+          <View style={styles.user_container}>
             <Image
               style={{ width: "100%", height: "100%" }}
               source={images.user}
@@ -83,7 +67,7 @@ const HomeScreen = ({ navigation, route }: any) => {
         backgroundColor={theme.colors.white}
         style={{
           gap: sizeHelper.calHp(50),
-          backgroundColor:theme.colors.white
+          backgroundColor: theme.colors.white,
         }}
       >
         <HomeHeader />
@@ -107,23 +91,11 @@ const HomeScreen = ({ navigation, route }: any) => {
         </View>
 
         <View style={{ paddingTop: "14%" }}>
-          <View
-            // colors={['#755FE2', '#6347EC', ]}
-
-            style={{
-              height: sizeHelper.calHp(410),
-              borderRadius: sizeHelper.calWp(40),
-              backgroundColor: "#755FE2",
-              padding: sizeHelper.calWp(30),
-              justifyContent: "flex-end",
-              gap: sizeHelper.calHp(25),
-            }}
-          >
+          <View style={styles.room_container}>
             <View
               style={{
                 gap: sizeHelper.calHp(7),
                 width: "80%",
-                // paddingTop: "20%",
               }}
             >
               <CustomText
@@ -153,31 +125,16 @@ const HomeScreen = ({ navigation, route }: any) => {
               style={{ marginBottom: sizeHelper.calHp(10) }}
               onPress={() => navigation.navigate("BottomTab")}
               width={"100%"}
-
             >
               <PlusIcon
                 width={sizeHelper.calWp(22)}
                 height={sizeHelper.calWp(22)}
-                // color={theme.colors.white}
               />
             </CustomButtom>
           </View>
 
-          <View
-            style={{
-              position: "absolute",
-              width: "100%",
-              // height: 40,
-              // backgroundColor: "red",
-              top: sizeHelper.calHp(-24),
-              paddingRight: sizeHelper.calWp(40),
-            }}
-          >
-            <FastfoodImage
-              width={"110%"}
-              // height={sizeHelper.calWp(25)}
-              color={theme.colors.white}
-            />
+          <View style={styles.absoulate_logo}>
+            <FastfoodImage width={"110%"} color={theme.colors.white} />
           </View>
         </View>
 
@@ -197,23 +154,19 @@ const HomeScreen = ({ navigation, route }: any) => {
               padding: sizeHelper.calWp(5),
             }}
           >
-             <CustomText
-            text={`Type Room #ID`}
-            size={25}
-            style={{marginLeft:sizeHelper.calWp(30)}}
-            color={theme.colors.secondry}
-          />
+            <CustomText
+              text={`Type Room #ID`}
+              size={25}
+              style={{ marginLeft: sizeHelper.calWp(30) }}
+              color={theme.colors.secondry}
+            />
 
-           <CustomButtom
+            <CustomButtom
               text="Join Room"
               borderRadius={999}
               paddingHorizontal={sizeHelper.calWp(45)}
               onPress={() => navigation.navigate("CreateRoomCreditScreen")}
-                            height={70}
-
-              // width={"50%"}
-            ></CustomButtom>
-
+              height={70}/>
           </View>
         </View>
       </ScreenLayout>
@@ -223,4 +176,32 @@ const HomeScreen = ({ navigation, route }: any) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  user_container: {
+    width: sizeHelper.calWp(80),
+    height: sizeHelper.calWp(80),
+    borderRadius: sizeHelper.calWp(80),
+  },
+  add_container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: sizeHelper.calWp(25),
+    borderRadius: 999,
+    backgroundColor: theme.colors.secondry,
+    marginLeft: sizeHelper.calWp(20),
+  },
+  room_container: {
+    height: sizeHelper.calHp(410),
+    borderRadius: sizeHelper.calWp(40),
+    backgroundColor: "#755FE2",
+    padding: sizeHelper.calWp(30),
+    justifyContent: "flex-end",
+    gap: sizeHelper.calHp(25),
+  },
+  absoulate_logo: {
+    position: "absolute",
+    width: "100%",
+    top: sizeHelper.calHp(-24),
+    paddingRight: sizeHelper.calWp(40),
+  },
+});

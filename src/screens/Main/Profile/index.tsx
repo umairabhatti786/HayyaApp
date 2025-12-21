@@ -1,49 +1,30 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import sizeHelper from "../../../utils/Helpers";
-import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
 import ScreenLayout from "../../../components/ScreenLayout";
-import { appStyles } from "../../../utils/GlobalStyles";
 import { theme } from "../../../utils/Themes";
 import { fonts } from "../../../utils/Themes/fonts";
 import CreditLogo from "../../../assets/svgs/creditLogo.svg";
 import PlusLight from "../../../assets/svgs/plusLight.svg";
-
 import CustomText from "../../../components/Text";
 import { images } from "../../../assets/images";
-import { FlatList } from "react-native-gesture-handler";
-import Text from "../../../components/Text";
-import { icons } from "../../../assets/icons";
 import AvatarModal from "../../../components/AvatarModal";
 import AppHeader from "../../../components/AppHeader";
-
+import EditIcon from "../../../assets/svgs/edit.svg";
+import { appStyles } from "../../../utils/GlobalStyles";
 const Profile = ({ navigation, route }: any) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   return (
     <ScreenLayout
       style={{
         paddingBottom: sizeHelper.calHp(70),
         flex: 1,
       }}
-      paddingTop={10}
+      paddingTop={1}
     >
-      <AppHeader
-      isProfile={true}
-       title={"Profile"} />
+      <AppHeader isProfile={true} title={"Profile"} />
       <View>
-        <View
-          style={{
-            // height: sizeHelper.calHp(300),
-            backgroundColor: "#755FE2",
-            borderRadius: sizeHelper.calWp(40),
-            padding: sizeHelper.calWp(30),
-            flexDirection: "row",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            marginTop: sizeHelper.calHp(70),
-          }}
-        >
+        <View style={styles.profile_detail}>
           <View
             style={{
               gap: sizeHelper.calHp(10),
@@ -65,15 +46,7 @@ const Profile = ({ navigation, route }: any) => {
           </View>
           <TouchableOpacity
             onPress={() => navigation.navigate("EditProfile")}
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              paddingHorizontal: sizeHelper.calWp(20),
-              paddingVertical: sizeHelper.calHp(10),
-
-              borderRadius: sizeHelper.calWp(32),
-              backgroundColor: theme.colors.black,
-            }}
+            style={styles.edit_profile_container}
           >
             <CustomText text={"Edit"} size={24} color="white" />
           </TouchableOpacity>
@@ -93,29 +66,27 @@ const Profile = ({ navigation, route }: any) => {
               borderRadius: sizeHelper.calWp(200),
             }}
           />
-          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
-            <Image
-              source={images.edit}
-              style={{
-                width: sizeHelper.calWp(55),
-                height: sizeHelper.calWp(55),
-                position: "absolute",
-                bottom: sizeHelper.calHp(20),
-                right: sizeHelper.calWp(-20),
-              }}
+
+          <TouchableOpacity
+            onPress={() => setIsModalVisible(true)}
+            style={styles.edit_container}
+          >
+            <EditIcon
+              height={sizeHelper.calWp(30)}
+              width={sizeHelper.calWp(30)}
             />
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity 
-      activeOpacity={0.5}
-      onPress={()=>navigation.navigate('MyCreditsScreen')}
-      style={styles.iconview}>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={() => navigation.navigate("MyCreditsScreen")}
+        style={styles.my_credit}
+      >
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
+            ...appStyles.rowjustify,
+
             padding: sizeHelper.calWp(25),
           }}
         >
@@ -169,7 +140,7 @@ const Profile = ({ navigation, route }: any) => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  iconview: {
+  my_credit: {
     height: sizeHelper.calHp(150),
     width: "100%",
     backgroundColor: theme.colors.PalePurple,
@@ -178,19 +149,37 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: sizeHelper.calWp(230),
   },
-  imagegroup1: {
-    height: sizeHelper.calWp(90),
-    width: sizeHelper.calWp(90),
-    resizeMode: "contain",
-  },
-  arrowview: {
+  profile_detail: {
+    backgroundColor: "#755FE2",
+    borderRadius: sizeHelper.calWp(40),
+    padding: sizeHelper.calWp(30),
     flexDirection: "row",
-    alignItems: "center",
-    gap: sizeHelper.calWp(25),
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+    marginTop: sizeHelper.calHp(70),
   },
-  backarrow: {
-    height: sizeHelper.calWp(30),
-    width: sizeHelper.calWp(30),
-    resizeMode: "contain",
+
+ 
+
+  edit_profile_container: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: sizeHelper.calWp(20),
+    paddingVertical: sizeHelper.calHp(10),
+
+    borderRadius: sizeHelper.calWp(32),
+    backgroundColor: theme.colors.black,
+  },
+
+  edit_container: {
+    width: sizeHelper.calWp(55),
+    height: sizeHelper.calWp(55),
+    position: "absolute",
+    bottom: sizeHelper.calHp(20),
+    right: sizeHelper.calWp(-20),
+    borderRadius: sizeHelper.calWp(55),
+    backgroundColor: theme.colors.secondry,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -97,7 +97,6 @@ export default LocationModal;
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    // backgroundColor: "rgba(0,0,0,0.1)",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -109,12 +108,5 @@ const styles = StyleSheet.create({
     paddingVertical: sizeHelper.calHp(30),
     alignItems: "center",
     gap:sizeHelper.calHp(10)
-  },
-  closeButton: {
-    backgroundColor: theme.colors.primary,
-    borderRadius: 8,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginTop: 20,
   },
 });

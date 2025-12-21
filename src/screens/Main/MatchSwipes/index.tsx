@@ -49,19 +49,14 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
   ];
 
   let moviesItem = {
-    img: images.movies,
-    imgHeight: "58%",
-    isMovies:true,
-    title: "Avatar- The Way of Water (2022)",
-    rating: "8.7/10",
-    des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
-    LeadingActorsData: [
-      { title: "Sam Worthington", des: "Jake Sully" },
-      { title: "Joy Saldana", des: "Neytiri" },
-      { title: "Sigourney Weaver", des: "Kiri" },
-      { title: "Kate Winslet", des: "Ronal" },
-      { title: "Stephen Lang", des: "Miles Quaritch" },
-    ],
+    img: images.restaurants,
+    imgHeight: "77%",
+    itsRestaurent: true,
+    title: "Ze Kitchen Galerie (2Km)",
+    rating: "4.7/5 (1940)",
+    location: "4 Rue des Grands Augustins, 75006 Paris",
+    opening: "Opens 10.00AM",
+    price: "€20-€100",
 
     AvailableRestaurant: [
       { name: "Action", img: images.netflix },
@@ -70,46 +65,161 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
     ],
   };
 
+  let swiperData = [
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
 
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
 
-  let swiperData =
-  [
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
 
-  
-  {
-    img: images.restaurants,
-    imgHeight: "77%",
-    itsRestaurent:true,
-    title: "Ze Kitchen Galerie (2Km)",
-    rating: "4.7/5 (1940)",
-    location: "4 Rue des Grands Augustins, 75006 Paris",
-    opening: "Opens 10.00AM",
-    price: "€20-€100",
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
 
-    AvailableRestaurant: [
-      { name: "Action", img: images.netflix },
-      { name: "Adventure", img: images.prime_video },
-      { name: "Family", img: images.family },
-    ],
-  },
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
 
-   {
-    img: images.restaurants,
-    imgHeight: "77%",
-    itsRestaurent:true,
-    title: "Ze Kitchen Galerie (2Km)",
-    rating: "4.7/5 (1940)",
-    location: "4 Rue des Grands Augustins, 75006 Paris",
-    opening: "Opens 10.00AM",
-    price: "€20-€100",
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
 
-    AvailableRestaurant: [
-      { name: "Action", img: images.netflix },
-      { name: "Adventure", img: images.prime_video },
-      { name: "Family", img: images.family },
-    ],
-  }
-]
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
+
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
+
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
+
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
+
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
+
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
+
+    {
+      img: images.movies,
+      imgHeight: "56%",
+      isMovies: true,
+      title: "Avatar- The Way of Water (2022)",
+      rating: "8.7/10",
+      des: "Avatar 2 continues the story of Jake Sully and Neytiri, now parents, as they navigate raising their family on Pandora. A familiar threat from the first film returns, forcing them to leave their home and seek...",
+      LeadingActorsData: [
+        { title: "Sam Worthington", des: "Jake Sully" },
+        { title: "Joy Saldana", des: "Neytiri" },
+        { title: "Sigourney Weaver", des: "Kiri" },
+        { title: "Kate Winslet", des: "Ronal" },
+        { title: "Stephen Lang", des: "Miles Quaritch" },
+      ],
+
+      AvailableRestaurant: [
+        { name: "Action", img: images.netflix },
+        { name: "Adventure", img: images.prime_video },
+        { name: "Family", img: images.family },
+      ],
+    },
+  ];
 
   const HomeHeader = () => {
     return (
@@ -117,13 +227,12 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(25) }}>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.back_container}
+            style={appStyles.back_container}
           >
-                <BackArrow
-                    height={sizeHelper.calWp(25)}
-                    width={sizeHelper.calWp(25)}
-                  />
-           
+            <BackArrow
+              height={sizeHelper.calWp(25)}
+              width={sizeHelper.calWp(25)}
+            />
           </TouchableOpacity>
           <View style={{ gap: sizeHelper.calHp(5) }}>
             <CustomText
@@ -192,19 +301,8 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
       >
         <HomeHeader />
 
-        <View style={{ flex: 1, }}>
-
-          <TinderSwiper
-          data={swiperData}
-          />
-        
-          {/* <RestaurantCard
-          mainStyle={{flex:1}}
-          item={restaurentItem}
-           onPress={() =>
-              navigation.navigate("MatchSwipesDetail", { data: restaurentItem })
-            }
-          /> */}
+        <View style={{ flex: 1 }}>
+          <TinderSwiper data={swiperData} navigation={navigation} />
         </View>
 
         <View
@@ -232,65 +330,6 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
             />
           </TouchableOpacity>
         </View>
-
-        {/* <Carousel
-          ref={carouselRef}
-          data={moviessData}
-          renderItem={renderItem}
-          sliderWidth={screenWidth}
-          itemWidth={screenWidth * 0.9}
-          inactiveSlideScale={0.94}
-          inactiveSlideOpacity={0.7}
-          loop={false}
-          layout={"tinder"}
-          layoutCardOffset={25} // Set offset as 0 if it disturbs the top positioning
-          containerCustomStyle={styles.carouselContainer}
-          slideStyle={{ marginTop: 0 }} // Ensure no margin disrupts top alignment
-          vertical={false} // Swipe remains horizontal
-          scrollEnabled={false} // Disable swipe gestures
-          useScrollView={true} // Enhances smoothness of rendering
-        /> */}
-        {/* <View style={{ flex: 1,  }}>
-          <PlanningImage
-            width={"100%"}
-            //   height={sizeHelper.calWp(100)}
-          />
-
-          <View style={{ gap: sizeHelper.calHp(20),}}>
-            
-
-            <CustomText
-              text={`What are you planning Today`}
-              size={28}
-              fontFam={fonts.InterTight_Medium}
-              color={theme.colors.secondry}
-              fontWeight={"600"}
-            />
-
-              <CustomInput
-                            borderRadius={sizeHelper.calHp(20)}
-                            height={250}
-                            paddingTop={sizeHelper.calHp(20)}
-                            multiline={true}
-                            textAlignVertical={"top"}
-                            placeholder="Describe what do you want to do? (e.g. Where can eat italian nearby?)"
-                        />
-          </View>
-        </View> */}
-
-        {/* <CustomButtom
-          textColor={theme.colors.white}
-          text="Create Room"
-          borderRadius={999}
-          onPress={() => navigation.navigate("CreateRoomLaunchScreen")}
-          width={"100%"}
-        >
-             <PlusIcon
-                width={sizeHelper.calWp(22)}
-                height={sizeHelper.calWp(22)}
-                color={theme.colors.white}
-              />
-            </CustomButtom> */}
       </ScreenLayout>
     </>
   );
@@ -299,14 +338,8 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
 export default MatchSwipesSceen;
 
 const styles = StyleSheet.create({
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
-  },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
+
+
 
   carouselContainer: {
     flex: 1, // Adjust height to ensure cards are fully visible
@@ -320,8 +353,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: sizeHelper.calHp(25),
-    marginHorizontal:sizeHelper.calWp(30)
+    marginHorizontal: sizeHelper.calWp(30),
   },
   differentbg: {
     backgroundColor: theme.colors.mustard,
@@ -351,6 +383,4 @@ const styles = StyleSheet.create({
     width: sizeHelper.calWp(110),
     height: sizeHelper.calWp(110),
   },
-
-  
 });

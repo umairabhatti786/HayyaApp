@@ -17,18 +17,14 @@ import LogoPartIcon from "../../../assets/svgs/logoPart.svg";
 import { images } from "../../../assets/images";
 import CustomButtom from "../../../components/Button";
 import PlusIcon from "../../../assets/svgs/plus.svg";
-import FastfoodImage from "../../../assets/svgs/fastfood.svg";
-import { icons } from "../../../assets/icons";
 import CopyIcon from "../../../assets/svgs/copy.svg";
 import ShareIcon from "../../../assets/svgs/share.svg";
-import ClockIcon from "../../../assets/svgs/clock.svg";
 import BackArrow from "../../../assets/svgs/backArrow.svg";
 import MovieCard from "../../../components/MovieCard";
+import AppHeader from "../../../components/AppHeader";
 
 const HistoryDetailScreen = ({ navigation, route }: any) => {
   let data = route?.params?.data;
-
-  const [isLaunchLoading, setIsLaunchLoading] = useState(false);
   const joinRoomPeople = [
     { name: "Yessine (You)", id: 1, image: images.user },
     { name: "Maissen", id: 2, image: images.user2 },
@@ -59,84 +55,6 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
     ],
   };
 
-  const HomeHeader = () => {
-    return (
-      <View
-        style={{ ...appStyles.rowjustify, paddingTop: sizeHelper.calHp(10) }}
-      >
-        <View style={{ ...appStyles.row, gap: sizeHelper.calWp(10) }}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={styles.back_container}
-          >
-            <BackArrow
-              height={sizeHelper.calWp(25)}
-              width={sizeHelper.calWp(25)}
-            />
-          </TouchableOpacity>
-
-          <CustomText
-            text={"History"}
-            size={35}
-            fontWeight="700"
-            fontFam={fonts.InterTight_SemiBold}
-          />
-        </View>
-
-        <View style={{ ...appStyles.row, gap: sizeHelper.calWp(20) }}>
-          <View
-            style={{
-              ...appStyles.row,
-              paddingRight: sizeHelper.calWp(5),
-              backgroundColor: "#755FE21F",
-              paddingLeft: sizeHelper.calWp(15),
-              borderRadius: 999,
-            }}
-          >
-            <LogoPartIcon
-              width={sizeHelper.calWp(50)}
-              height={sizeHelper.calWp(50)}
-            />
-            <CustomText
-              text={`15`}
-              size={27}
-              fontFam={fonts.InterTight_Medium}
-              color={theme.colors.secondry}
-              fontWeight={"600"}
-            />
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                padding: sizeHelper.calWp(25),
-                borderRadius: 999,
-                backgroundColor: theme.colors.secondry,
-                marginLeft: sizeHelper.calWp(20),
-              }}
-            >
-              <PlusIcon
-                width={sizeHelper.calWp(25)}
-                height={sizeHelper.calWp(25)}
-                color={theme.colors.white}
-              />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              width: sizeHelper.calWp(80),
-              height: sizeHelper.calWp(80),
-              borderRadius: sizeHelper.calWp(80),
-            }}
-          >
-            <Image
-              style={{ width: "100%", height: "100%" }}
-              source={images.user}
-            />
-          </View>
-        </View>
-      </View>
-    );
-  };
 
   const HistoryDetail = () => {
     return (
@@ -186,24 +104,23 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
       <ScreenLayout
         style={{
           paddingBottom: sizeHelper.calHp(70),
-          //   gap: sizeHelper.calHp(50),
           flex:1
         }}
-        paddingTop={10}
+        paddingTop={1}
       >
-        <HomeHeader />
+        <AppHeader
+        title={"History"}
+      />
+        
 
         <ScrollView
           contentContainerStyle={
             data?.status=="Completed"?
             {
             gap: sizeHelper.calHp(25),
-           
             paddingBottom:sizeHelper.calWp(100),
           }: {
             gap: sizeHelper.calHp(25),
-           
-            // paddingBottom:sizeHelper.calWp(100),
             flex:1,
           }}
           showsVerticalScrollIndicator={false}
@@ -213,7 +130,6 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
 
             <View
               style={{
-                // height: sizeHelper.calHp(410),
                 borderRadius: sizeHelper.calWp(40),
                 backgroundColor: theme.colors.white,
                 padding: sizeHelper.calWp(30),
@@ -324,7 +240,6 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
                     text="Share"
                     borderRadius={999}
                     bgColor={theme.colors.secondry}
-                    // onPress={() => navigation.navigate("CreateRoomCreditScreen")}
                     width={"37%"}
                     height={70}
                   >
@@ -346,23 +261,15 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
               borderRadius={999}
               style={{ marginBottom: sizeHelper.calHp(80) }}
               bgColor={theme.colors.primary}
-              onPress={() => {
-                setIsLaunchLoading(true);
-                setTimeout(() => {
-                  setIsLaunchLoading(false);
-
-                  navigation.navigate("MatchSwipesSceen");
-                }, 3000);
-              }}
+             
               width={"100%"}
-            ></CustomButtom>
+            />
           )}
 
           {data?.status == "Completed" && (
             <View
               style={{
               
-                // marginTop: sizeHelper.calHp(130),
                 padding: sizeHelper.calWp(30),
                 backgroundColor: theme.colors.white,
                 gap: sizeHelper.calHp(20),
@@ -377,7 +284,6 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
               />
 
               <MovieCard
-                //   mainStyle={{flex:1}}
                 item={moviesItem}
                 onPress={() =>
                   navigation.navigate("MatchSwipesDetail", { data: moviesItem })
@@ -394,16 +300,6 @@ const HistoryDetailScreen = ({ navigation, route }: any) => {
 export default HistoryDetailScreen;
 
 const styles = StyleSheet.create({
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
-    justifyContent: "center",
-  },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
-
   historyDetailCard: {
     backgroundColor: theme.colors.white,
     paddingHorizontal: sizeHelper.calWp(25),

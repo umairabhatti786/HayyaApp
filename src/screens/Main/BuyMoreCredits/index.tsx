@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TouchableOpacity, FlatList } from "react-native";
+import { StyleSheet, View, TouchableOpacity, FlatList } from "react-native";
 import sizeHelper from "../../../utils/Helpers";
 import ScreenLayout from "../../../components/ScreenLayout";
-import { images } from "../../../assets/images";
-import { icons } from "../../../assets/icons";
 import CustomText from "../../../components/Text";
 import { fonts } from "../../../utils/Themes/fonts";
 import { theme } from "../../../utils/Themes";
@@ -11,35 +9,42 @@ import CustomButton from "../../../components/Button";
 import { appStyles } from "../../../utils/GlobalStyles";
 import BackArrow from "../../../assets/svgs/backArrow.svg";
 import CreditLogo from "../../../assets/svgs/creditLogo.svg";
+import { ByCreditsData } from "../../../utils/Data";
 
 const BuyMoreCreditsScreen = ({ navigation, route }: any) => {
-  const Credits = [
-    {
-      id: 1,
-      credits: "10 credits",
-      cruncey: "€ 5.0",
-    },
-    {
-      id: 2,
-      credits: "20 credits",
-      cruncey: "€ 10.0",
-    },
-    {
-      id: 1,
-      credits: "30 credits",
-      cruncey: "€ 30.0",
-    },
-    {
-      id: 1,
-      credits: "50 credits",
-      cruncey: "€ 45.0",
-    },
-    {
-      id: 1,
-      credits: "100 credits",
-      cruncey: "€ 80.0",
-    },
-  ];
+ 
+
+  const ByCarditsCard=({item,index}:any)=>{
+
+    return(
+ <View style={styles.creditsbox}>
+            <View style={{ gap: sizeHelper.calHp(10) }}>
+              <CustomText
+                text={item.credits}
+                size={28}
+                fontWeight="600"
+                fontFam={fonts.InterTight_SemiBold}
+              />
+
+              <CustomText
+                text={item.cruncey}
+                size={20}
+                fontFam={fonts.InterTight_Medium}
+              />
+            </View>
+            <CustomButton
+              fontWeight={"500"}
+              borderRadius={999}
+              fontFam={fonts.InterTight_Regular}
+              colors={theme.colors.primary}
+              width={90}
+              height={50}
+              text="Buy Now"
+              size={22}
+            />
+          </View>
+    )
+  }
   return (
     <ScreenLayout>
       <View style={{ ...appStyles.row, gap: sizeHelper.calWp(15) }}>
@@ -63,12 +68,7 @@ const BuyMoreCreditsScreen = ({ navigation, route }: any) => {
 
       <TouchableOpacity style={styles.creditContainer}>
         <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: sizeHelper.calWp(25),
-          }}
+          style={{ ...appStyles.rowjustify, padding: sizeHelper.calWp(25) }}
         >
           <CreditLogo
             height={sizeHelper.calWp(90)}
@@ -105,43 +105,12 @@ const BuyMoreCreditsScreen = ({ navigation, route }: any) => {
         />
       </View>
 
-       <FlatList
-        data={Credits}
-        keyExtractor={(item,index) => index.toString()}
-        contentContainerStyle={{gap:sizeHelper.calHp(25)}}
-        renderItem={({ item ,index}:any) => (
-        <View style={styles.creditsbox}>
-              <View
-              style={{gap:sizeHelper.calHp(10)}}
-              >
-                <CustomText
-                  text={item.credits}
-                  size={28}
-                  fontWeight="600"
-                  fontFam={fonts.InterTight_SemiBold}
-                />
-
-                 <CustomText
-                text={item.cruncey}
-                size={20}
-                fontFam={fonts.InterTight_Medium}
-              />
-                </View>
-           <CustomButton
-           fontWeight={"500"}
-           borderRadius={999}
-           fontFam={fonts.InterTight_Regular}
-                    colors={theme.colors.primary}
-                    width={90}
-                    height={50}
-                    text="Buy Now"
-                    size={22}
-                  />
-             
-            </View>
-        )}
+      <FlatList
+        data={ByCreditsData}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{ gap: sizeHelper.calHp(25) }}
+        renderItem={ByCarditsCard}
       />
-    
     </ScreenLayout>
   );
 };
@@ -179,9 +148,8 @@ const styles = StyleSheet.create({
     borderRadius: sizeHelper.calWp(30),
     justifyContent: "space-between",
     padding: sizeHelper.calWp(30),
-    flexDirection:"row",
-    alignItems:"center"
-    
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   creditContainer: {

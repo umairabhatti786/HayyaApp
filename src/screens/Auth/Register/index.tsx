@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import sizeHelper from "../../../utils/Helpers";
 import ScreenLayout from "../../../components/ScreenLayout";
 import CustomText from "../../../components/Text";
@@ -16,12 +16,9 @@ import {
   minLengthRegex,
 } from "../../../utils/Regex";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
 import BackArrow from "../../../assets/svgs/backArrow.svg";
-
 import CloseIcon from "../../../assets/svgs/close.svg";
 import EnableIcon from "../../../assets/svgs/enable.svg";
-
 const RegisterScreen = ({ navigation }: any) => {
   const [showPassowrd, setShowPassowrd] = useState(false);
   const [isConfirmPassword, setIsConfirmPassword] = useState(false);
@@ -67,7 +64,7 @@ const RegisterScreen = ({ navigation }: any) => {
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.back_container}
+            style={appStyles.back_container}
           >
             <BackArrow
               height={sizeHelper.calWp(25)}
@@ -188,10 +185,9 @@ const RegisterScreen = ({ navigation }: any) => {
             <TouchableOpacity
               onPress={() => navigation.navigate("LoginScreen")}
               style={{
-                alignItems: "center",
+                ...appStyles.row,
                 gap: sizeHelper.calWp(5),
                 alignSelf: "center",
-                flexDirection: "row",
               }}
             >
               <CustomText
@@ -218,14 +214,3 @@ const RegisterScreen = ({ navigation }: any) => {
 };
 
 export default RegisterScreen;
-
-const styles = StyleSheet.create({
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
-  },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
-});

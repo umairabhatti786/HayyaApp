@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   View,
-  StyleSheet,
-  Image,
   TouchableOpacity,
   Pressable,
   Keyboard,
@@ -15,10 +13,9 @@ import CustomButtom from "../../../components/Button";
 import CustomInput from "../../../components/Input";
 import { theme } from "../../../utils/Themes";
 import { icons } from "../../../assets/icons";
-import { images } from "../../../assets/images";
-
 import BackArrow from "../../../assets/svgs/backArrow.svg";
 import PassowordCelebration from "../../../assets/svgs/passowordCelebration.svg";
+import { appStyles } from "../../../utils/GlobalStyles";
 
 const SetNewPasswordScreen = ({ navigation }: any) => {
   const [showPassowrd, setShowPassowrd] = useState(false);
@@ -29,15 +26,11 @@ const SetNewPasswordScreen = ({ navigation }: any) => {
       <ScreenLayout>
         <Pressable
           onPress={() => Keyboard.dismiss()}
-          style={{
-            flex: 1,
-            gap: sizeHelper.calHp(50),
-            backgroundColor: theme.colors.background,
-          }}
+          style={appStyles.inner_container}
         >
           <TouchableOpacity
             onPress={() => navigation.goBack()}
-            style={styles.back_container}
+            style={appStyles.back_container}
           >
             <BackArrow
               height={sizeHelper.calWp(25)}
@@ -105,14 +98,3 @@ const SetNewPasswordScreen = ({ navigation }: any) => {
 };
 
 export default SetNewPasswordScreen;
-
-const styles = StyleSheet.create({
-  back_container: {
-    height: sizeHelper.calWp(40),
-    width: sizeHelper.calWp(40),
-  },
-  back_icon: {
-    height: sizeHelper.calWp(25),
-    width: sizeHelper.calWp(25),
-  },
-});

@@ -5,7 +5,7 @@ import Profile from "../../screens/Main/Profile";
 import EditProfile from "../../screens/Main/EditProfile";
 import HistoryDetailScreen from "../../screens/Main/HistoryDetail";
 import MyCreditsScreen from "../../screens/Main/MyCredits";
-import BuyMoreCreditsScreen from "../../screens/Main/BuyMoreCredits/CreditsScreen2";
+import BuyMoreCreditsScreen from "../../screens/Main/BuyMoreCredits";
 
 const Stack = createNativeStackNavigator();
 const HistoryStack=()=>{

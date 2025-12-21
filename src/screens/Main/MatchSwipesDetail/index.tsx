@@ -41,115 +41,142 @@ const MatchSwipesDetail = ({ navigation, route }: any) => {
           gap: sizeHelper.calHp(50),
         }}
       >
+        <View
+          style={{
+            flex: 1,
 
-      
-        <View style={{flex:1,
+            gap: sizeHelper.calHp(50),
+          }}
+        >
+          <HomeHeader />
 
-                  gap: sizeHelper.calHp(50),
+          <View>
+            <View
+              // colors={['#755FE2', '#6347EC', ]}
 
+              style={{
+                height: screentHeight / 2.8,
+                borderRadius: sizeHelper.calWp(40),
+                backgroundColor: "#755FE2",
+                padding: sizeHelper.calWp(30),
+                gap: sizeHelper.calHp(25),
+              }}
+            >
+              <View
+                style={{
+                  gap: sizeHelper.calHp(7),
+                  paddingTop: "20%",
+                  alignItems: "center",
+                }}
+              >
+                <CustomText
+                  text={`It’s a match!`}
+                  size={35}
+                  fontFam={fonts.InterTight_SemiBold}
+                  color={theme.colors.white}
+                  fontWeight={"700"}
+                />
 
-        }}>
-        <HomeHeader />
+                <CustomText
+                  text={`Everyone loved this choice.`}
+                  size={25}
+                  fontFam={fonts.InterTight_Regular}
+                  color={theme.colors.white}
+                  fontWeight={"400"}
+                />
+              </View>
+            </View>
 
-           <View>
-          <View
-            // colors={['#755FE2', '#6347EC', ]}
-
-            style={{
-              height: screentHeight / 2.8,
-              borderRadius: sizeHelper.calWp(40),
-              backgroundColor: "#755FE2",
-              padding: sizeHelper.calWp(30),
-              gap: sizeHelper.calHp(25),
-            }}
-          >
             <View
               style={{
-                gap: sizeHelper.calHp(7),
-                paddingTop: "20%",
+                position: "absolute",
+                width: "100%",
+                top: sizeHelper.calHp(-54),
                 alignItems: "center",
               }}
             >
-              <CustomText
-                text={`It’s a match!`}
-                size={35}
-                fontFam={fonts.InterTight_SemiBold}
-                color={theme.colors.white}
-                fontWeight={"700"}
-              />
-
-              <CustomText
-                text={`Everyone loved this choice.`}
-                size={25}
-                fontFam={fonts.InterTight_Regular}
-                color={theme.colors.white}
-                fontWeight={"400"}
-              />
+              {data?.isMovies ? (
+                <MovieMatch
+                  //   width={"110%"}
+                  // height={sizeHelper.calWp(25)}
+                  color={theme.colors.white}
+                />
+              ) : (
+                <RestaurentMatch
+                  //   width={"110%"}
+                  // height={sizeHelper.calWp(25)}
+                  color={theme.colors.white}
+                />
+              )}
             </View>
-          </View>
-
-          <View
-            style={{
-              position: "absolute",
-              width: "100%",
-              top: sizeHelper.calHp(-54),
-              alignItems: "center",
-            }}
-          >
-            {
-              data?.isMovies?(
-                 <MovieMatch
-              //   width={"110%"}
-              // height={sizeHelper.calWp(25)}
-              color={theme.colors.white}
-            />
-
-              ):(
-
-                     <RestaurentMatch
-              //   width={"110%"}
-              // height={sizeHelper.calWp(25)}
-              color={theme.colors.white}
-            />
-
-              )
-            }
-           
-          </View>
-          {data?.isMovies ? (
-            <View
-              style={{
-                position: "absolute",
-                bottom: sizeHelper.calHp(-140),
-                width: "100%",
-              }}
-            >
-              <View style={{ paddingHorizontal: sizeHelper.calWp(40) }}>
-                <MovieCard item={data} imgHeight={"45%"} />
+            {data?.isMovies ? (
+              <View
+                style={{
+                  position: "absolute",
+                  bottom: sizeHelper.calHp(-140),
+                  width: "100%",
+                }}
+              >
+                <View style={{ paddingHorizontal: sizeHelper.calWp(40) }}>
+                  <MovieCard item={data} imgHeight={"45%"} />
+                </View>
               </View>
-            </View>
-          ) : (
-            <View
-              style={{
-                position: "absolute",
-                bottom: sizeHelper.calHp(10),
-                width: "100%",
-              }}
-            >
-              <View style={{ paddingHorizontal: sizeHelper.calWp(40) }}>
-                <RestaurantCard item={data} imgHeight={"70%"} />
+            ) : (
+              <View
+                style={{
+                  position: "absolute",
+                  bottom: sizeHelper.calHp(10),
+                  width: "100%",
+                }}
+              >
+                <View style={{ paddingHorizontal: sizeHelper.calWp(40) }}>
+                  <RestaurantCard item={data} imgHeight={"70%"} />
+                </View>
               </View>
+            )}
+          </View>
+        </View>
+        {data?.isMovies ? (
+          <>
+            <View
+              style={{ ...appStyles.rowjustify, gap: sizeHelper.calWp(10) }}
+            >
+              {data?.AvailableRestaurant.map((item: any, index: any) => {
+                return (
+                  <View
+                    style={{
+                      ...appStyles.row,
+                      gap: sizeHelper.calWp(10),
+                      backgroundColor: theme.colors.white,
+                      borderRadius: 999,
+                      paddingHorizontal: sizeHelper.calWp(30),
+                      paddingVertical:sizeHelper.calHp(10)
+                    }}
+                  >
+                    <Image
+                      style={{
+                        width: sizeHelper.calWp(55),
+                        height: sizeHelper.calWp(55),
+                        borderRadius: sizeHelper.calWp(55),
+                      }}
+                      source={item?.img}
+                    />
+
+                    <CustomText
+                  text={`Watch`}
+                  size={23}
+                  fontFam={fonts.InterTight_SemiBold}
+                  color={theme.colors.secondry}
+                  fontWeight={"600"}
+                />
+                  </View>
+                );
+              })}
             </View>
-          )}
-        </View>
-
-        </View>
-
-        <View
-        style={{gap:sizeHelper.calHp(10)}}
-        >
-
-          <CustomButtom
+          </>
+        ) : (
+          <View style={{ gap: sizeHelper.calHp(10) }}>
+            <CustomButtom
               textColor={theme.colors.black}
               text="Make Reservation"
               bgColor={theme.colors.mustard}
@@ -157,7 +184,6 @@ const MatchSwipesDetail = ({ navigation, route }: any) => {
               style={{ marginBottom: sizeHelper.calHp(10) }}
               onPress={() => navigation.navigate("BottomTab")}
               width={"100%"}
-
             >
               <CalendarIcon
                 width={sizeHelper.calWp(35)}
@@ -166,7 +192,7 @@ const MatchSwipesDetail = ({ navigation, route }: any) => {
               />
             </CustomButtom>
 
-             <CustomButtom
+            <CustomButtom
               textColor={theme.colors.black}
               text="Directions"
               bgColor={theme.colors.white}
@@ -174,7 +200,6 @@ const MatchSwipesDetail = ({ navigation, route }: any) => {
               style={{ marginBottom: sizeHelper.calHp(10) }}
               onPress={() => navigation.navigate("BottomTab")}
               width={"100%"}
-
             >
               <PinIcon
                 width={sizeHelper.calWp(35)}
@@ -182,10 +207,8 @@ const MatchSwipesDetail = ({ navigation, route }: any) => {
                 color={theme.colors.secondry}
               />
             </CustomButtom>
-
-        </View>
-
-       
+          </View>
+        )}
 
         {/* <View style={{ gap: sizeHelper.calHp(15) }}>
           <CustomText
