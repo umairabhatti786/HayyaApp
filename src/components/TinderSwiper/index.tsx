@@ -15,12 +15,12 @@ import HeartIcon from "../../assets/svgs/heart.svg";
 import CrossWhite from "../../assets/svgs/crossWhite.svg";
 import sizeHelper from "../../utils/Helpers";
 import { theme } from "../../utils/Themes";
-import RestaurantCard from "../RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 
 const { width } = Dimensions.get("window");
 const SWIPE_THRESHOLD = 120;
 
-const TinderSwiper = ({ data = [], navigation }) => {
+const TinderSwiper = ({ data, navigation }) => {
   const [cards, setCards] = useState(data);
 
   const translateX = useRef(new Animated.Value(0)).current;
@@ -89,8 +89,10 @@ const TinderSwiper = ({ data = [], navigation }) => {
 
     const CardContent = (
       <>
-        {/* ❌ NOPE */}
-        <Animated.View style={[styles.nopeOverlay, { opacity: nopeOpacity }]}>
+        {/* ❌ REJECT */}
+        <Animated.View
+          style={[styles.nopeOverlay, { opacity: nopeOpacity }]}
+        >
           <CrossWhite
             width={sizeHelper.calWp(40)}
             height={sizeHelper.calWp(40)}
@@ -98,7 +100,9 @@ const TinderSwiper = ({ data = [], navigation }) => {
         </Animated.View>
 
         {/* ❤️ LIKE */}
-        <Animated.View style={[styles.likeOverlay, { opacity: likeOpacity }]}>
+        <Animated.View
+          style={[styles.likeOverlay, { opacity: likeOpacity }]}
+        >
           <HeartIcon
             width={sizeHelper.calWp(50)}
             height={sizeHelper.calWp(50)}
@@ -108,9 +112,9 @@ const TinderSwiper = ({ data = [], navigation }) => {
         {/* ✅ REAL CARD */}
         <RestaurantCard
           mainStyle={{ flex: 1 }}
-          item={item} // ✅ CORRECT
+          item={data}
           onPress={() =>
-            navigation.navigate("MatchSwipesDetail", { data: item })
+            navigation.navigate("MatchSwipesDetail", { data: data })
           }
         />
       </>
@@ -148,7 +152,7 @@ const TinderSwiper = ({ data = [], navigation }) => {
         <Animated.FlatList
           data={cards.slice(0, 3)}
           renderItem={renderItem}
-          keyExtractor={(item,index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}
           scrollEnabled={false}
           removeClippedSubviews={false}
           style={StyleSheet.absoluteFill}
@@ -190,6 +194,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 10,
-    flex:1
   },
 });
