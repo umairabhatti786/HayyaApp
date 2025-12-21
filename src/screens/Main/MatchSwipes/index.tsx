@@ -70,7 +70,13 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
     ],
   };
 
-  let restaurentItem = {
+
+
+  let swiperData =
+  [
+
+  
+  {
     img: images.restaurants,
     imgHeight: "77%",
     itsRestaurent:true,
@@ -85,7 +91,25 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
       { name: "Adventure", img: images.prime_video },
       { name: "Family", img: images.family },
     ],
-  };
+  },
+
+   {
+    img: images.restaurants,
+    imgHeight: "77%",
+    itsRestaurent:true,
+    title: "Ze Kitchen Galerie (2Km)",
+    rating: "4.7/5 (1940)",
+    location: "4 Rue des Grands Augustins, 75006 Paris",
+    opening: "Opens 10.00AM",
+    price: "€20-€100",
+
+    AvailableRestaurant: [
+      { name: "Action", img: images.netflix },
+      { name: "Adventure", img: images.prime_video },
+      { name: "Family", img: images.family },
+    ],
+  }
+]
 
   const HomeHeader = () => {
     return (
@@ -163,14 +187,16 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
   return (
     <>
       <ScreenLayout
-        // style={{ paddingBottom: sizeHelper.calHp(70) }}
+        style={{ paddingHorizontal: sizeHelper.calWp(0) }}
         paddingTop={10}
       >
         <HomeHeader />
 
-        <View style={{ flex: 1, paddingHorizontal: sizeHelper.calWp(30) }}>
+        <View style={{ flex: 1, }}>
 
-          <TinderSwiper/>
+          <TinderSwiper
+          data={swiperData}
+          />
         
           {/* <RestaurantCard
           mainStyle={{flex:1}}
@@ -295,6 +321,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: sizeHelper.calHp(25),
+    marginHorizontal:sizeHelper.calWp(30)
   },
   differentbg: {
     backgroundColor: theme.colors.mustard,
