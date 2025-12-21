@@ -16,7 +16,7 @@ import BackArrow from "../../../assets/svgs/backArrow.svg";
 const MyCreditsScreen = ({ navigation, route }: any) => {
   const [isOn, setIsOn] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<any>(
-      {name:"Free",des:"10 credits/ mon"},
+    
 
   );
 

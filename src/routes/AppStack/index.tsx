@@ -14,8 +14,8 @@ import BottomTab from "../BottomTab";
 import CreateRoomCreditScreen from "../../screens/Main/CreateRoom/CreateRoomCredit";
 import CreateRoomCreditPlanningScreen from "../../screens/Main/CreateRoom/CreateRoomCreditPlanning";
 import CreateRoomLaunchScreen from "../../screens/Main/CreateRoom/CreateRoomLaunch";
-import CreditsScreen from "../../screens/Main/Credits"
-import CreditsScreen2 from "../../screens/Main/Credits2/CreditsScreen2"
+import CreditsScreen from "../../screens/Main/MyCredits"
+import CreditsScreen2 from "../../screens/Main/BuyMoreCredits/CreditsScreen2"
 import MatchSwipesSceen from "../../screens/Main/MatchSwipes";
 import MatchSwipesDetail from "../../screens/Main/MatchSwipesDetail";
 import HistoryDetailScreen from "../../screens/Main/HistoryDetail";

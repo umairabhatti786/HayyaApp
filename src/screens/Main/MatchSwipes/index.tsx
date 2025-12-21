@@ -28,6 +28,7 @@ import RestaurantCard from "../../../components/RestaurantCard";
 import MovieCard from "../../../components/MovieCard";
 import HeartIcon from "../../../assets/svgs/heart.svg";
 import CrossWhite from "../../../assets/svgs/crossWhite.svg";
+import TinderSwiper from "../../../components/TinderSwiper";
 
 const MatchSwipesSceen = ({ navigation, route }: any) => {
   const carouselRef = useRef<any>(null);
@@ -168,14 +169,16 @@ const MatchSwipesSceen = ({ navigation, route }: any) => {
         <HomeHeader />
 
         <View style={{ flex: 1, paddingHorizontal: sizeHelper.calWp(30) }}>
+
+          <TinderSwiper/>
         
-          <RestaurantCard
+          {/* <RestaurantCard
           mainStyle={{flex:1}}
           item={restaurentItem}
            onPress={() =>
               navigation.navigate("MatchSwipesDetail", { data: restaurentItem })
             }
-          />
+          /> */}
         </View>
 
         <View

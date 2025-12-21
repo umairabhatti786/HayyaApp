@@ -1,89 +1,123 @@
-import React, { useRef } from "react";
-import { View, Image, Text, StyleSheet, Dimensions } from "react-native";
-import Carousel, { TAnimationStyle } from "react-native-reanimated-carousel";
-import Animated, { interpolate, Extrapolation } from "react-native-reanimated";
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Animated,
+} from "react-native";
+import { PanGestureHandler } from "react-native-gesture-handler";
 
-const { width, height } = Dimensions.get("window");
-
-const CARD_WIDTH = width * 0.85;
-const CARD_HEIGHT = height * 0.65;
-const STACK_OFFSET = 14;
-
-const DATA = [
-  { id: "1", name: "Cafe Aroma", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" },
-  { id: "2", name: "Burger House", img: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800" },
-  { id: "3", name: "Pizza Corner", img: "https://images.unsplash.com/photo-1548365328-9c2f7f08b85d?w=800" },
-  { id: "4", name: "Sushi World", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
-];
+const { width } = Dimensions.get("window");
+const SWIPE_THRESHOLD = 120;
 
 const TinderSwiper = () => {
-  const direction = useRef(0);
+  const [cards, setCards] = useState([
+    { id: 1, title: "AVATAR", color: "#0B1C3F" },
+    { id: 2, title: "NEXT", color: "#F5B26B" },
+    { id: 3, title: "MORE", color: "#7C6CF2" },
+    { id: 4, title: "NEXT", color: "#F5B26B" },
+    { id: 5, title: "AVATAR", color: "#0B1C3F" },
+    { id: 6, title: "MORE", color: "#7C6CF2" },
+    { id: 7, title: "NEXT", color: "#F5B26B" },
 
-  /**
-   * value:
-   *   0   -> current card
-   *  -1   -> swiping left
-   *   1   -> swiping right
-   */
-  const animationStyle: TAnimationStyle = (value, index) => {
-    "worklet";
 
-    const translateX = interpolate(
-      value,
-      [-1, 0, 1],
-      [-width, 0, width],
-      Extrapolation.CLAMP
-    );
 
-    const rotateZ = interpolate(
-      value,
-      [-1, 0, 1],
-      [-15, 0, 15],
-      Extrapolation.CLAMP
-    );
+  ]);
 
-    const scale = interpolate(index, [0, 1, 2], [1, 0.95, 0.9]);
-    const translateY = index * STACK_OFFSET;
+  const translateX = useRef(new Animated.Value(0)).current;
 
-    return {
-      transform: [
-        { translateX },
-        { translateY },
-        { rotateZ: `${rotateZ}deg` },
-        { scale },
-      ],
-      zIndex: 100 - index,
-    };
+  const rotate = translateX.interpolate({
+    inputRange: [-width / 2, 0, width / 2],
+    outputRange: ["-15deg", "0deg", "15deg"],
+  });
+
+  const cardStyle = {
+    transform: [{ translateX }, { rotate }],
+  };
+
+  const onGestureEvent = Animated.event(
+    [{ nativeEvent: { translationX: translateX } }],
+    { useNativeDriver: true }
+  );
+
+  const onHandlerStateChange = (event) => {
+    if (event.nativeEvent.state === 5) {
+      if (event.nativeEvent.translationX > SWIPE_THRESHOLD) {
+        swipeCard(width);
+      } else if (event.nativeEvent.translationX < -SWIPE_THRESHOLD) {
+        swipeCard(-width);
+      } else {
+        resetCard();
+      }
+    }
+  };
+
+  const swipeCard = (toValue) => {
+    Animated.timing(translateX, {
+      toValue,
+      duration: 220,
+      useNativeDriver: true,
+    }).start(() => {
+      setCards((prev) => prev.slice(1));
+      translateX.setValue(0);
+    });
+  };
+
+  const resetCard = () => {
+    Animated.spring(translateX, {
+      toValue: 0,
+      useNativeDriver: true,
+    }).start();
   };
 
   return (
     <View style={styles.container}>
-      <Carousel
-        width={CARD_WIDTH}
-        height={CARD_HEIGHT}
-        data={DATA}
-        loop={false}
-        vertical={false}
-        windowSize={4}
-        customAnimation={animationStyle}
-        onConfigurePanGesture={(g) =>
-          g.onChange((e) => {
-            "worklet";
-            direction.current = Math.sign(e.translationX);
-          })
-        }
-        onSnapToItem={(index) => {
-          console.log("Swiped to index:", index);
-        }}
-        renderItem={({ item }) => (
-          <Animated.View style={styles.card}>
-            <Image source={{ uri: item.img }} style={styles.image} />
-            <View style={styles.label}>
-              <Text style={styles.text}>{item.name}</Text>
+      {cards
+        .slice(0, 3)
+        .map((item, index) => {
+          const isTop = index === 0;
+
+          const scale = 1 - index * 0.04;
+          const translateY = -index * 18; // 👈 TOP STACK
+
+          return (
+            <View
+              key={item.id}
+              style={[
+                styles.cardWrapper,
+                {
+                  transform: [{ scale }, { translateY }],
+                },
+              ]}
+            >
+              {isTop ? (
+                <PanGestureHandler
+                  onGestureEvent={onGestureEvent}
+                  onHandlerStateChange={onHandlerStateChange}
+                >
+                  <Animated.View
+                    style={[
+                      styles.card,
+                      cardStyle,
+                      { backgroundColor: item.color },
+                    ]}
+                  >
+                    <Text style={styles.text}>{item.title}</Text>
+                  </Animated.View>
+                </PanGestureHandler>
+              ) : (
+                <View
+                  style={[
+                    styles.card,
+                    { backgroundColor: item.color },
+                  ]}
+                />
+              )}
             </View>
-          </Animated.View>
-        )}
-      />
+          );
+        })
+        .reverse()}
     </View>
   );
 };
@@ -92,46 +126,28 @@ export default TinderSwiper;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
-    alignItems: "center",
+    backgroundColor: "#f4f4f4",
     justifyContent: "center",
+    alignItems: "center",
   },
-
-  card: {
-    width: CARD_WIDTH,
-    height: CARD_HEIGHT,
-    borderRadius: 24,
-    backgroundColor: "#FFFFFF",
-    overflow: "hidden",
-
-    // iOS shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.25,
-    shadowRadius: 15,
-
-    // Android shadow
-    elevation: 10,
-  },
-
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-
-  label: {
+  cardWrapper: {
     position: "absolute",
-    bottom: 24,
-    left: 20,
-    right: 20,
   },
-
+  card: {
+    width: 320,
+    height: 420,
+    borderRadius: 24,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowRadius: 20,
+    elevation: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   text: {
-    color: "#FFFFFF",
-    fontSize: 28,
-    fontWeight: "700",
-    textShadowColor: "rgba(0,0,0,0.4)",
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 6,
+    color: "#8CF0FF",
+    fontSize: 36,
+    fontWeight: "800",
+    letterSpacing: 2,
   },
 });
